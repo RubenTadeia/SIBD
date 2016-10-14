@@ -1,0 +1,132 @@
+Part I: Some basic experiments
+
+###################################################################################
+%%% Pergunta
+5.The meaning of the columns should be clear to you, but what about the primary key
+and foreign key? Find the primary key and foreign key.
+
+%%% Resposta
+Tabela -> account
+Primary Key -> account_number
+Foreign Key -> branch_name
+###################################################################################
+
+
+
+###################################################################################
+%%% Pergunta
+8. Run the following query and explain, in your own words, what this query is doing:
+SELECT * FROM account, depositor;
+
+%%% Resposta
+Esta query selecciona todas as linhas e colunas (conteúdo) da primeira tabela, que
+neste caso é a table "account", e para cada vez que imprime todo o conteúdo, impri-
+me também uma linha da segunda tabela neste caso "depositor". Ou seja caso a tabela
+1 tenha N linhas e a tabela 2 tenha N linhas. O resultado desta query apresenta va-
+lores repetidos e condensados numa tabela com N² colunas
+###################################################################################
+
+
+
+###################################################################################
+%%% Pergunta
+9. Now explain what this query is doing:
+SELECT *
+FROM account, depositor
+WHERE account.account_number = depositor.account_number;
+
+%%% Resposta
+Esta nova query é a execução da query anterior mas com uma condição extra, interse-
+ção. E o que faz é mostrar apenas no ecrã, as rows (linhas) que têm o valor da co-
+luna account_number coincidentes.
+###################################################################################
+
+
+###################################################################################
+%%% Pergunta
+10. What are the differences between the result of the previous query and this one:
+SELECT * FROM account NATURAL JOIN depositor;
+
+%%% Resposta
+O Natural join, junta duas tabelas e remove as colunas repetidas.
+###################################################################################
+
+
+
+###################################################################################
+%%% Pergunta
+11. Try joining 3 tables:
+SELECT * FROM account, depositor, customer;
+
+12. If table account has 7 rows, table depositor has 7 rows, and table customer has 13
+rows, can you predict how many rows will appear in the result of the previous query?
+
+%%% Resposta
+	-> Como:
+A tabela "account" tem 7 linhas
+A tabela "depositor" tem 7 linhas
+A tabela "customer" tem 13 linhas
+
+Logo esta query imprime 7 * 7 * 13 = 637 resultados
+###################################################################################
+
+
+
+###################################################################################
+%%% Pergunta
+13. Now run a similar query, but with some additional criteria:
+
+SELECT *
+FROM account, depositor, customer
+WHERE account.account_number = depositor.account_number
+AND depositor.customer_name = customer.customer_name;
+
+What information is this query showing?
+
+%%% Resposta
+A query devolve todos os clientes (que neste caso são 7) que têm contas
+###################################################################################
+
+
+
+###################################################################################
+%%% Pergunta
+14. What are the differences between the result of the previous query and this one:
+
+SELECT *
+FROM account NATURAL JOIN depositor NATURAL JOIN customer;
+
+%%% Resposta
+Imprime a linha anterior mas interseptando as colunas account_number e customer_name
+Ou seja o resultado tem 6 colunas e 7 linhas.
+###################################################################################
+
+
+###################################################################################
+%%% Pergunta
+15. This query works:
+
+SELECT account_number
+FROM account NATURAL JOIN depositor NATURAL JOIN customer;
+
+But this query does not work:
+
+SELECT account_number
+FROM account, depositor, customer
+WHERE account.account_number = depositor.account_number
+AND depositor.customer_name = customer.customer_name;
+
+How can you fix the second query to make it work?
+
+%%% Resposta
+
+SELECT account.account_number
+FROM account, depositor, customer
+WHERE account.account_number = depositor.account_number
+AND depositor.customer_name = customer.customer_name;
+
+Porquê? Existem 2 colunas de account_number, mas como não fazemos o join. Ele vai
+tentar imprimir as 2 colunas, quando só queremos apenas 1. Logo é preciso especificar
+que coluna queremos.
+
+###################################################################################

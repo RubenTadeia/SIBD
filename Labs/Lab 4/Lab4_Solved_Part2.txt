@@ -1,0 +1,119 @@
+Part II: Querying the database
+
+###################################################################################
+%%% Pergunta
+1. Some customers have accounts with balance over 500€. Find their names (but, for
+privacy reasons, do not show their balances). There should be no repeated names in
+the result.
+
+%%% Resposta
+
+select customer_name from depositor , account where account.account_number = depositor.account_number AND account.balance > 500;
+
+###################################################################################
+
+
+###################################################################################
+%%% Pergunta
+2. Some customers have loans with amounts between 1000€ and 2000€. We need to find
+the cities where those customers live.
+
+%%% Resposta
+
+select customer_city from customer, loan , borrower WHERE customer.customer_name = borrower.customer_name AND loan.loan_number = borrower.loan_number AND loan.amount >= 1000 AND loan.amount <= 2000;
+
+O resultado são 6 linhas porque a conta L-17 está partilhada
+###################################################################################
+
+
+###################################################################################
+%%% Pergunta
+3. What would be the new balance of the accounts in Perryridge, if this branch decided
+to charge a commission of 1% to each account? (You do not need to update the table,
+just show what the new balance of each account would be)
+
+%%% Resposta
+
+select (balance*0.99) AS balance from account where account.branch_name = 'Perryridge';
+
+
+O AS é opcional para não se notar diferença
+###################################################################################
+
+
+
+###################################################################################
+%%% Pergunta
+4. What is the account number and balance for each account of the customer associated
+with loan L-15?
+
+%%% Resposta
+
+select account.account_number, balance from account, depositor, borrower WHERE borrower.customer_name = depositor.customer_name AND account.account_number = depositor.account_number AND borrower.loan_number = 'L-15';
+
+###################################################################################
+
+
+
+###################################################################################
+%%% Pergunta
+5. Who are the customers who live in cities where the bank has branches? (Do not show
+duplicates in the result)
+
+%%% Resposta
+
+select distinct customer.customer_name from customer, branch WHERE customer.customer_city = branch.branch_city;
+
+###################################################################################
+
+
+
+###################################################################################
+%%% Pergunta
+6. What are the assets of the branch where customer ‘Jones’ has an account?
+
+%%% Resposta
+
+select assets from branch, depositor , account where depositor.customer_name = 'Jones' AND depositor.account_number = account.account_number AND account.branch_name = branch.branch_name;
+
+###################################################################################
+
+
+
+###################################################################################
+%%% Pergunta
+7. In this question we are interested only in those customers with a name beginning with
+‘J’ and ending with ‘s’. In which branches do these customers have an account?
+
+%%% Resposta
+
+select distinct branch.branch_name from branch, account, depositor, customer WHERE branch.branch_name = account.branch_name AND account.account_number = depositor.account_number AND depositor.customer_name LIKE 'J%s';
+
+###################################################################################
+
+
+
+###################################################################################
+%%% Pergunta
+8. In this question we are interested only in those customers who live in a street with 4
+letters. If these customers have a loan, what is the amount of their loans? (In the
+results, show the customer name, the customer street, the loan numbers, and the
+amounts of their loans)
+
+%%% Resposta
+
+select customer.customer_name , customer_street, borrower.loan_number , amount from customer , borrower , loan WHERE customer_street LIKE '____' AND customer.customer_name = borrower.customer_name AND borrower.loan_number = loan.loan_number;
+
+###################################################################################
+
+
+
+###################################################################################
+%%% Pergunta
+9. Who is the customer who has both an account and a loan in the same branch?
+
+%%% Resposta
+
+select customer.customer_name from customer , depositor , borrower , account , loan WHERE customer.customer_name = borrower.customer_name AND borrower.loan_number = loan.loan_number AND customer.customer_name = depositor.customer_name AND depositor.account_number = account.account_number AND loan.branch_name = account.branch_name;
+
+###################################################################################
