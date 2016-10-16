@@ -1,0 +1,10 @@
+Part I: Some basic experiments
+
+###################################################################################
+%%% Pergunta
+1. How many customers live in the same city of a branch where they have a loan?
+
+%%% Resposta
+
+###################################################################################
+
