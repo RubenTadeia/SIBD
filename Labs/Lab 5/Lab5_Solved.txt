@@ -1,4 +1,7 @@
-Part I: Some basic experiments
+Lab Session 5: SQL Queries
+
+Querying the database
+
 
 ###################################################################################
 %%% Pergunta
@@ -6,5 +9,188 @@ Part I: Some basic experiments
 
 %%% Resposta
 
+select count( distinct customer.customer_name) as Numero_De_Utilizadores from customer, borrower, loan, branch where customer.customer_name = 
+borrower.customer_name AND borrower.loan_number =  loan.loan_number AND customer.customer_city = branch.branch_city;
+
 ###################################################################################
 
+
+
+###################################################################################
+%%% Pergunta
+2. Find the average balance of the accounts of each customer.
+
+%%% Resposta
+
+select customer.customer_name , avg(balance) from customer, depositor, account WHERE customer.customer_name = depositor.customer_name AND depositor.account_number = account.account_number GROUP BY customer.customer_name;
+
+###################################################################################
+
+
+
+###################################################################################
+%%% Pergunta
+3. Find the average balance of the accounts of each customer, but only for branches in
+the city of Horseneck.
+
+%%% Resposta
+
+select customer.customer_name , avg(balance) from customer, depositor, account , branch WHERE customer.customer_name = depositor.customer_name AND depositor.account_number = account.account_number AND account.branch_name = branch.branch_name AND branch.branch_city ='Horseneck' GROUP BY customer.customer_name;
+
+###################################################################################
+
+
+
+###################################################################################
+%%% Pergunta
+4. Considering the branches in the city of Horseneck, determine the total amount of
+money in the accounts of those branches.
+
+%%% Resposta
+
+select sum(loan.amount) from branch, loan WHERE branch.branch_city = 'HORSENECK';
+
+###################################################################################
+
+
+
+###################################################################################
+%%% Pergunta
+5. For each city, determine the total amount of money in the accounts of branches in
+that city. (In the results, indicate the city and the total amount of money).
+
+%%% Resposta
+
+select branch_city , sum(balance) from account , branch WHERE branch.branch_name = account.branch_name GROUP BY branch_city;
+
+###################################################################################
+
+
+
+###################################################################################
+%%% Pergunta
+6. Show, in alphabetical order, the names of branches that have 2 or more loans.
+
+%%% Resposta
+
+select branch_name from loan GROUP BY branch_name HAVING count(*) > 1 ORDER BY branch_name ASC;
+
+###################################################################################
+
+
+
+###################################################################################
+%%% Pergunta
+7. Same question as before, but show also the sum of the loans for each branch.
+
+%%% Resposta
+
+select branch_name, sum(amount) from loan GROUP BY branch_name HAVING count(*) > 1 ORDER BY branch_name ASC;
+
+###################################################################################
+
+
+
+###################################################################################
+%%% Pergunta
+8. Someone has noticed that there are some branches without any account. Using an
+outer join, find those branches. In the result, show the name and city of those
+branches which have no accounts.
+
+%%% Resposta
+
+
+
+###################################################################################
+
+
+
+###################################################################################
+%%% Pergunta
+9. Someone has noticed that there are some customers without any account. Using the
+NOT IN operator, find the customers who have no accounts.
+
+%%% Resposta
+
+
+
+###################################################################################
+
+
+
+###################################################################################
+%%% Pergunta
+10. Consider the set of branches which have either accounts or loans (or both). Find which
+branches are not in that set. Use UNION and NOT IN in the query.
+
+%%% Resposta
+
+
+
+###################################################################################
+
+
+
+###################################################################################
+%%% Pergunta
+11. Now consider the set of branches which have both accounts and loans. To find which
+branches are not in that set, how would you change the previous query? Try it.
+
+%%% Resposta
+
+
+
+###################################################################################
+
+
+
+###################################################################################
+%%% Pergunta
+12. Consider the set of cities where the bank has branches. Now find the set of customers
+who live in those cities. Use the IN operator.
+
+%%% Resposta
+
+
+
+###################################################################################
+
+
+
+###################################################################################
+%%% Pergunta
+13. What is the loan with the highest amount? In the result, show only the number and
+the amount for that loan. Use the ALL operator.
+
+%%% Resposta
+
+
+
+###################################################################################
+
+
+
+###################################################################################
+%%% Pergunta
+14. Find the total amount of money that each customer owes to the bank (i.e. considering
+all the loans of that customer). In the result, show the customer name and the total
+amount of money for each customer name.
+
+%%% Resposta
+
+
+
+###################################################################################
+
+
+
+###################################################################################
+%%% Pergunta
+15. Now find the customer who owes more money to the bank (considering the all loans
+of that customer). Show only the name of that customer. Use the ALL operator.
+
+%%% Resposta
+
+
+
+###################################################################################
