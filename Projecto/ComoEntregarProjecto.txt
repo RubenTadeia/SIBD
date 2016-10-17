@@ -1,0 +1,13 @@
+4 Páginas
+
+Página 1:
+	-> Capa
+
+Página 2:
+	-> Diagrama E-R (alínea a)
+
+Página 3:
+	-> (alínea b)
+
+Página 4:
+	-> Justificação das nossas decisões
