@@ -99,7 +99,7 @@ branches which have no accounts.
 
 %%% Resposta
 
-
+select distinct branch.branch_name, branch_city from branch right outer join account on branch.branch_name not in  (select branch_name from account);
 
 ###################################################################################
 
@@ -112,7 +112,7 @@ NOT IN operator, find the customers who have no accounts.
 
 %%% Resposta
 
-
+SELECT customer.customer_name FROM customer WHERE customer.customer_name NOT IN (SELECT depositor.customer_name FROM depositor);
 
 ###################################################################################
 
@@ -125,6 +125,12 @@ branches are not in that set. Use UNION and NOT IN in the query.
 
 %%% Resposta
 
+select branch.branch_name from branch
+where branch_name not in 
+(select account.branch_name from account
+union
+select loan.branch_name from loan
+);
 
 
 ###################################################################################
@@ -138,7 +144,11 @@ branches are not in that set, how would you change the previous query? Try it.
 
 %%% Resposta
 
-
+select branch.branch_name from branch
+where branch_name not in 
+(select distinct account.branch_name from account
+where branch_name in (select loan.branch_name from loan)
+);
 
 ###################################################################################
 
@@ -151,7 +161,7 @@ who live in those cities. Use the IN operator.
 
 %%% Resposta
 
-
+SELECT customer_city , customer_name FROM customer WHERE customer_city IN (SELECT branch_city FROM branch);
 
 ###################################################################################
 
@@ -164,7 +174,8 @@ the amount for that loan. Use the ALL operator.
 
 %%% Resposta
 
-
+select loan_number from loan
+where amount >= all (select amount from loan);
 
 ###################################################################################
 
@@ -178,7 +189,9 @@ amount of money for each customer name.
 
 %%% Resposta
 
-
+select borrower.customer_name, sum(amount) from borrower, loan
+where borrower.loan_number = loan.loan_number
+GROUP BY borrower.customer_name;
 
 ###################################################################################
 
@@ -191,6 +204,7 @@ of that customer). Show only the name of that customer. Use the ALL operator.
 
 %%% Resposta
 
-
+select borrower.customer_name from borrower, loan
+where amount >= all (select amount from loan) AND loan.loan_number = borrower.loan_number;
 
 ###################################################################################
