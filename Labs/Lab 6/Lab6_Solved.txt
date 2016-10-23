@@ -93,7 +93,17 @@ accounts.)
 
 %%% Resposta
 
+Esta query devolve um 'customer' da tabela depositor se e só se, não existir um branch em que a cidade seja 'Brooklyn' cujo nome não esteja associado  
+aos branches onde o utilizador tem contas.
 
++---------------+                                 +---------------+                                +---------------+
+|   depositor   |   ----- não existem ----- >     |     branch    |     ----- não estão ----- >    |     account   |
++---------------+                                 +---------------+                                +---------------+  
+|     nomes     |                                 |  branch_name  |                                |  branch_name  |
++---------------+                                 +---------------+                                +---------------+
+                                                  |   Brighton    |
+                                                  |   Downtown    |
+                                                  +---------------+
 
 ###################################################################################
 
@@ -108,15 +118,18 @@ query using not exists twice (i.e. replace the not in by a second not exists).
 
 select distinct customer_name
 from depositor as d
-where not exists (
-select branch_name
-from branch as b
-where branch_city = 'Brooklyn'
-and branch_name not in (
+where not in (
 select branch_name
 from account as a, depositor as d2
 where a.account_number = d2.account_number
-and d2.customer_name = d.customer_name));
+and d2.customer_name = d.customer_name
+AND not in (
+select branch_name
+from account as a, depositor as d2
+where a.account_number = d2.account_number
+and d2.customer_name = d.customer_name)
+)
+;
 
 ###################################################################################
 
@@ -136,8 +149,21 @@ we cannot find a branch in that city where the customer does not have an account
 
 %%% Resposta
 
+select distinct customer_name
+from customer as c, branch as b
+where customer_city = branch_city
+AND exists (
+select branch_name
+from branch as b
+where branch_name in (
+select branch_name
+from account as a, depositor as d
+where a.account_number = d.account_number
+and c.customer_name = d.customer_name
+and a.branch_name = b.branch_name));
 
 
+Nao esta resolvido ainda
 ###################################################################################
 
 
@@ -151,8 +177,21 @@ that you can access the customer city in the second select.)
 
 %%% Resposta
 
+select distinct d.customer_name
+from depositor as d inner join customer
+where exists (
+select branch_name
+from branch as b
+where branch_city <> customer_city
+and branch_name not in (
+select branch_name
+from account as a, depositor as d2
+where a.account_number = d2.account_number
+and d2.customer_name = d.customer_name
+and b.branch_name = a.branch_name));
 
 
+Nao esta resolvido ainda
 ###################################################################################
 
 
