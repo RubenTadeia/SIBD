@@ -9,8 +9,8 @@ Querying the database
 
 %%% Resposta
 
-select count( distinct customer.customer_name) as Numero_De_Utilizadores from customer, borrower, loan, branch where customer.customer_name = 
-borrower.customer_name AND borrower.loan_number =  loan.loan_number AND customer.customer_city = branch.branch_city;
+select count( distinct borrower.customer_name) from customer, borrower, loan, branch where customer.customer_name = 
+borrower.customer_name AND borrower.loan_number =  loan.loan_number AND loan.branch_name = branch.branch_name AND customer.customer_city = branch.branch_city;
 
 ###################################################################################
 
@@ -48,7 +48,7 @@ money in the accounts of those branches.
 
 %%% Resposta
 
-select sum(loan.amount) from branch, loan WHERE branch.branch_city = 'HORSENECK';
+select sum(balance) from branch, account WHERE branch.branch_city = 'HORSENECK' and account.branch_name = branch.branch_name;
 
 ###################################################################################
 
@@ -161,7 +161,7 @@ who live in those cities. Use the IN operator.
 
 %%% Resposta
 
-SELECT customer_city , customer_name FROM customer WHERE customer_city IN (SELECT branch_city FROM branch);
+SELECT customer_name FROM customer WHERE customer_city IN (SELECT branch_city FROM branch);
 
 ###################################################################################
 
@@ -174,7 +174,7 @@ the amount for that loan. Use the ALL operator.
 
 %%% Resposta
 
-select loan_number from loan
+select loan_number, amount from loan
 where amount >= all (select amount from loan);
 
 ###################################################################################
