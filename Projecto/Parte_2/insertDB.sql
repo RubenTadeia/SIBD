@@ -1,6 +1,6 @@
 /* Para testar */
 
-USE projectoGrupo15;	
+USE projectoGrupo15;
 
 /* Limpeza das tabelas */
 

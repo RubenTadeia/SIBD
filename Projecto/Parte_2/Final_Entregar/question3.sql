@@ -25,24 +25,22 @@ declare requestDI integer;
 declare appointmentDT date;
 declare studyDT date;
 
+SET studyRN = new.request_number;
+SET studyDI = new.doctor_id;
 
-SET studyRN = (select study.request_number from study);
-SET requestRN = (select request.request_number from request);
-SET studyDI = (select study.doctor_id from study);
-SET requestDI = (select request.doctor_id from request;
+SET requestDI = (select request.doctor_id from request where request_number.request_number = studyRN);
 
-SET appointmentDT = (select appointment.date from appointment as date);
-SET studyDT = cast(select study.date from study as date);
+SET studyDT = new.date;
+SET appointmentDT = (select appointment.date from appointment where appointment.doctor_id = studyDI);
 
 
-if ( ( studyRN = requestRN ) AND ( studyDI = requestDI)) 
+if ( studyDI = requestDI)
 then
-signal sqlstate '45000' set message_txt 'The same doctor cannot perform any study that he/she requested';
+signal sqlstate '45000' set message_text = 'The same doctor cannot perform any study that he/she requested';
 
-
-if ( (appointmentDT - studyDT ) != 0 ) 
+elseif ( (appointmentDT - studyDT ) != 0 ) 
 then
-signal sqlstate '45000' set message_txt 'The date of a study must be posterior to the date of the
+signal sqlstate '45000' set message_text = 'The date of a study must be posterior to the date of the
 appointment that requested the study';
 end if;
 
