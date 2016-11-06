@@ -102,8 +102,13 @@ insert into request values (7 , 7, 1, '2016-11-06');
 insert into study values ( 7, 'X-ray' , '2016-11-06', 1 , 'R2D2' , 'Ahah-hehe-ihih-hoho-uhuh');
 
 
+Resposta : ERROR 1644 (45000): The same doctor cannot perform any study that he/she requested!
+
+
 /* Rebentar no segundo trigger */
 
 insert into appointment values (7, 1, '2016-11-05',  'Explosion in trigger part 2');
 insert into request values (8 , 7, 1, '2016-11-05');
-insert into study values ( 8 'X-ray' , '2016-10-31', 2, 'R2D2', 'Ahah-hehe-ihih-hoho-uhuh');
+insert into study values ( 8 , 'X-ray' , '2016-10-31', 2, 'R2D2', 'Ahah-hehe-ihih-hoho-uhuh');
+
+Resposta : ERROR 1644 (45000): The date of a study must be posterior to the date of the appointment that requested the study!
