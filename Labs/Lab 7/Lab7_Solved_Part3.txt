@@ -1,0 +1,75 @@
+Lab Session 7: Functions, Stored Procedures and Triggers
+
+
+Part III: Triggers
+
+
+###################################################################################
+%%% Pergunta
+6. Write a new trigger to be called every time there is an update on table loan. If the
+amount of a loan is changed to a negative value, the trigger should create a new
+account and also associate the borrowers of the loan as depositors for the new
+account. Finally, it should set the loan amount to zero.
+
+
+%%% Exemplo do professor
+
+We have seen how to create a trigger to automatically create a new loan when the
+balance of an account becomes negative:
+
+
+delimiter $$
+create trigger check_balance before update on account
+for each row
+begin
+if new.balance < 0 then
+insert into loan values (new.account_number,
+new.branch_name,
+(-1)*new.balance);
+insert into borrower (
+select customer_name, account_number
+from depositor as d
+where d.account_number = new.account_number);
+set new.balance = 0;
+end if;
+end$$
+delimiter ;
+
+
+%%% Resposta
+
+delimiter $$
+create trigger check_amount before update on loan
+for each row
+begin
+if new.amount < 0 then
+insert into account values (new.loan_number,
+new.branch_name,
+(-1)*new.amount);
+insert into depositor (
+select customer_name , loan_number
+from borrower as b
+where b.loan_number = new.loan_number);
+set new.amount = 0;
+end if;
+end$$
+delimiter ;
+
+
+###################################################################################
+
+
+###################################################################################
+%%% Pergunta
+7. Test the trigger by subtracting 1200 from the amount of 'L-17'. Confirm that a new
+account has been created, that the depositors for that account have been inserted
+correctly, and that the amount of 'L-17' has been set to zero.
+
+
+%%% Resposta
+
+update loan
+set amount = amount - 1200
+where loan_number = 'L-17';
+
+###################################################################################

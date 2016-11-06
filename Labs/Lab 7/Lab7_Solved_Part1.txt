@@ -1,0 +1,72 @@
+Lab Session 7: Functions, Stored Procedures and Triggers
+
+
+Part I: Functions
+
+
+###################################################################################
+%%% Pergunta
+1. Write an SQL function that returns the “absolute balance” of a customer. The
+“absolute balance” is the difference between all the money that the customer has (in
+accounts), and all the money that the customer owes to the bank (in loans).
+Hint: the following queries return the balance for customer ‘Smith’. You can combine
+these queries in your function:
+
+
+%%% Resposta
+
+delimiter $$
+create function absolute_balance(c_name varchar(255))
+returns integer
+begin
+declare abs_balance integer;
+declare sum_balance integer;
+declare sum_amount integer;
+
+select sum(balance) into sum_balance
+from account natural join depositor
+where customer_name = c_name;
+
+select sum(amount) into sum_amount
+from loan natural join borrower
+where customer_name = c_name;
+
+SET abs_balance = sum_balance - sum_amount;
+
+return abs_balance;
+end$$
+delimiter ;
+
+
+###################################################################################
+
+
+
+###################################################################################
+%%% Pergunta
+3. Using your function, find the customer who has the highest absolute balance in the
+bank.
+
+%%% Resposta
+
++----------------------------+
+| absolute_balance ('Smith') |
++----------------------------+
+|                      -2200 |
++----------------------------+
+
++----------------------------+
+| absolute_balance ('Hayes') |
++----------------------------+
+|                      -1100 |
++----------------------------+
+
++----------------------------+
+| absolute_balance ('Jones') |
++----------------------------+
+|                       -250 |
++----------------------------+
+
+É o Jones que tem mais "dinheiro" em termos absolutos
+
+###################################################################################

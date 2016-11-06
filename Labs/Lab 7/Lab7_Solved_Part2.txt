@@ -1,0 +1,55 @@
+Lab Session 7: Functions, Stored Procedures and Triggers
+
+
+Part II: Stored Procedures
+
+
+###################################################################################
+%%% Pergunta
+4. Write a new stored procedure that returns, for a given branch, the list of customers
+who have accounts in that branch.
+Hint: the following query returns the list of customers who have accounts in ‘Brighton’.
+You can use a similar query in your procedure:
+
+
+%%% Exemplo
+
+delimiter $$
+create procedure reward_accounts(in interest_rate float)
+begin
+update account
+set balance = balance + interest_rate * balance;
+end$$
+delimiter ;
+call reward_accounts(0.01);
+
+
+
+%%% Exemplo de Query dada no enunciado
+
+select customer_name
+from depositor as d, account as a
+where d.account_number = a.account_number
+and a.branch_name = 'Brighton';
+
++---------------+
+| customer_name |
++---------------+
+| Johnson       |
+| Jones         |
++---------------+
+
+%%% Resposta
+
+delimiter $$
+create procedure find_customers(in branchName varchar(255))
+begin
+select customer_name
+from depositor as d, account as a
+where d.account_number = a.account_number
+and a.branch_name = branchName;
+end$$
+delimiter ;
+call find_customers('Brighton');
+
+###################################################################################
