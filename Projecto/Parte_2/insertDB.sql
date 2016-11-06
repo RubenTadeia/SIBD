@@ -1,6 +1,8 @@
 /* Para testar */
 
-USE projectoGrupo15;
+/* USE ist175682 
+USE ist179297 */
+USE ist175268;
 
 /* Limpeza das tabelas */
 
@@ -56,6 +58,7 @@ insert into equipment values ( 'Philips', 'AXBN-VB3R-79H5-5MHD' , 'Model 3');
 insert into equipment values ( 'Roger', 'YM38-Q84W-75CA-YYQD' , 'Unique Model' );
 insert into equipment values ( 'Droid' , '2EC72-368A4-5E4E9-D54A1' , 'Best Model' );
 insert into equipment values ( 'Philips', 'FR4S-8542-UYQW-USH9' , 'Last Model');
+insert into equipment values ( 'R2D2', 'Ahah-hehe-ihih-hoho-uhuh' , 'Space Unit');
 
 
 /* study */
@@ -89,3 +92,18 @@ insert into region values (3, 3 , 0.5, 0.5 , 0.9, 0.9);
 insert into region values (4, 4 , 0.4 , 0.4 , 0.5 , 0.5);
 insert into region values (5, 5 , 0.425 ,0.425 , 0.495 , 0.495);
 
+
+/* Estes são as 2 queries que usei para testar o meu trigger :) */
+
+
+/* Rebentar no primeiro trigger */
+insert into appointment values (7, 1, '2016-11-06',  'Explosion in trigger part 1');
+insert into request values (7 , 7, 1, '2016-11-06');
+insert into study values ( 7, 'X-ray' , '2016-11-06', 1 , 'R2D2' , 'Ahah-hehe-ihih-hoho-uhuh');
+
+
+/* Rebentar no segundo trigger */
+
+insert into appointment values (7, 1, '2016-11-05',  'Explosion in trigger part 2');
+insert into request values (8 , 7, 1, '2016-11-05');
+insert into study values ( 8 'X-ray' , '2016-10-31', 2, 'R2D2', 'Ahah-hehe-ihih-hoho-uhuh');

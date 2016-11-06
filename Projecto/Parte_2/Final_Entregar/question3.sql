@@ -28,17 +28,19 @@ declare studyDT date;
 SET studyRN = new.request_number;
 SET studyDI = new.doctor_id;
 
-SET requestDI = (select request.doctor_id from request where request_number.request_number = studyRN);
+SET requestDI = (select request.doctor_id from request where request.request_number = studyRN);
 
 SET studyDT = new.date;
-SET appointmentDT = (select appointment.date from appointment where appointment.doctor_id = studyDI);
 
+/* Assumindo que o appointment tem a mesma data que o resquest */
+SET appointmentDT = (select distinct appointment.date from appointment, request , study where appointment.date = request.date 
+	AND request.request_number = studyRN);
 
 if ( studyDI = requestDI)
 then
 signal sqlstate '45000' set message_text = 'The same doctor cannot perform any study that he/she requested';
 
-elseif ( (appointmentDT - studyDT ) != 0 ) 
+elseif ( DATEDIFF(studyDT , appointmentDT) > 0 ) 
 then
 signal sqlstate '45000' set message_text = 'The date of a study must be posterior to the date of the
 appointment that requested the study';
