@@ -1,0 +1,75 @@
+\documentclass[10pt]{article}
+\usepackage[bottom]{footmisc} % footnotes no fim da pagina
+\usepackage[utf8]{inputenc}
+\usepackage{adjustbox}
+\usepackage{caption}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{makecell}
+\usepackage{array,tabularx}
+\usepackage{tabu}
+\usepackage[none]{hyphenat}
+\linespread{1.3} % spacing between lines. 1 for simple space, 1.3 for space and half, 1.6 for double
+\usepackage[a4paper, top=2cm, bottom=2cm, right=2cm, left=2cm]{geometry}   % tipo de "página" com as margens a 2 cm
+\usepackage{fancyhdr}  % isto é para os cabeçalhos e as imagens darem menos trabalho a colocar
+\usepackage{perpage} %the perpage package
+\usepackage{hyperref}
+\usepackage{array}
+\usepackage{indentfirst}
+\usepackage[portuguese]{babel}
+\usepackage{multirow}
+\usepackage{amsmath}
+\usepackage{IEEEtrantools}
+\usepackage{tikz}
+\usepackage{siunitx}
+\usepackage{rotating}
+\usepackage{listings}
+\usepackage{subcaption}
+\usepackage{blindtext}
+\usepackage[official]{eurosym}
+
+% Raise the version to allow imports of version 1.7
+\pdfminorversion=7
+
+\numberwithin{equation}{section}
+\numberwithin{figure}{section}
+\numberwithin{table}{section}
+
+\newcommand{\parallelsum}{\mathbin{\!/\mkern-5mu/\!}}
+
+\lstdefinestyle{customc}{
+  belowcaptionskip=1\baselineskip,
+  breaklines=true,
+  frame=leftline,
+  xleftmargin=\parindent,
+  language=C,
+  captionpos=b,                    % sets the caption-position to bottom
+  showstringspaces=false,
+  basicstyle=\footnotesize\ttfamily,
+  keywordstyle=\bfseries\color{black},
+  commentstyle=\itshape\color{gray},
+  identifierstyle=\color{black},
+  stringstyle=\color{black},
+  numbers=left,
+}
+\lstset{style=customc}
+\renewcommand{\lstlistingname}{Código}
+
+\begin{document}
+  \sloppy
+  %capa
+  \input{capa}
+  \pagebreak
+  \thispagestyle{empty}
+  \vspace*{2cm}
+  \pagebreak
+  \setcounter{page}{1}
+  \tableofcontents
+  \pagebreak
+  \thispagestyle{empty}
+  \vspace*{2cm}
+  \pagebreak
+  \setcounter{page}{2}
+  \pagebreak
+
+\end{document}
