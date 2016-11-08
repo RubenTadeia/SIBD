@@ -1,0 +1,141 @@
+% -*- root: main.tex -*-
+
+\subsection{Análise de Sensibilidades}
+
+\subsubsection*{Alínea (a)}
+
+A sensibilidades calculadas, quer em valor simbólico, quer em numérico, estão apresentadas na Tabela \ref{tab:sens_pas}. Estas foram calculadas com base nas propriedades \ref{eq:sens_xk} a \ref{eq:sens_sumy}.%
+%
+\begin{IEEEeqnarray}{rCl}
+S_x^{x^k} &=& k \label{eq:sens_xk}\\
+S_x^{ \prod y_i} &=& \sum S_x^{y_i} \label{eq:sens_prody}\\
+S_x^{ \sum y_i} &=& \frac{1}{\sum y_i}\sum y_i \cdot S_x^{y_i} \label{eq:sens_sumy}
+\end{IEEEeqnarray}
+
+\begin{table}[!ht]
+	\centering
+	\begin{tabular}{|c|c|c|c|c|}
+		\hline
+		$x$ & $R_1$ & $R_2$ & $C_1$ & $C_2$ \\
+		\hline \hline
+		$S_x^{w_p}$ & $-0.5$ & $-0.5$ & $-0.5$ & $-0.5$ \\
+		\hline
+		$S_x^{Q_p}$ & $0$ & $0$ & $+0.5$ & $-0.5$ \\
+		\hline
+		$S_x^{K}$ & $-1$ & $-1$ & $-1$ & $-1$ \\
+		\hline
+	\end{tabular}
+	\caption{Sensibilidades dos parâmetros do filtro em relação aos componentes passivos.}
+	\label{tab:sens_pas}
+\end{table}
+
+Para o caso das sensibilidades relativas a $Q_p$ (cujo resultado não é imediato), verifica-se, pelas propriedades indicadas anteriormente que:%
+%
+\begin{IEEEeqnarray}{rCll}
+S_{R1}^{Q_p} &=& S_{R1}^{num(Q_p)} - S_{R1}^{den(Q_p)} & \text{, pela propriedade \ref{eq:sens_prody}} \label{eq:sensQpR1}\\
+&=& \frac{1}{2} - \frac{R_1}{R_1 + R_2} & \text{, pelas propriedades \ref{eq:sens_xk} e \ref{eq:sens_sumy}}\nonumber\\
+&=& \frac{R_2 - R_1}{2\cdot(R_1 + R_2)} \nonumber \\  \nonumber\\
+S_{R2}^{Q_p} &=& \frac{R_1 - R_2}{2\cdot(R_1 + R_2)} & \text{(semelhante à anterior)} \label{eq:sensQpR2}
+\end{IEEEeqnarray}
+
+Os erros relativos dos componentes e dos parâmetros do circuito estão indicados na Tabela \ref{tab:erros_pas}. Estes foram obtidos directamente pela sua equação correspondente.
+
+\begin{table}[!ht]
+	\centering
+	\begin{tabular}{|c|c|c|c|c|c|c|c|}
+		\hline
+		$x$ & $R_1$ & $R_2$ & $C_1$ & $C_2$ & $w_p$ & $Q_p$ & $K$ \\
+		\hline \hline
+		$\frac{\Delta x}{x} [\%]$ & $10 $ &$10$ &$10$ &$-10$ &$-10$ &$10$ &$-20$ \\
+		\hline
+	\end{tabular}
+	\caption{Erros relativos componentes passivos e dos parâmetros (calculados através das sensibilidades).}
+	\label{tab:erros_pas}
+\end{table}
+
+
+\subsubsection*{Alínea (b)}
+
+Admitindo que o amplificador operacional é caracterizado por um produto ganho largura de banda, a sua função de transferência é%
+%
+\begin{IEEEeqnarray}{rCl}
+A(s) = \frac{A_0}{1+s/w_0} = \frac{GB}{s+w_0} \text{.}
+\end{IEEEeqnarray}
+
+Nestas condições, verifica-se
+\begin{IEEEeqnarray}{rCl}
+V_3(s) = k(s) \cdot V_1(s)
+\end{IEEEeqnarray}
+\begin{IEEEeqnarray}{rCl}
+k(s) = \frac{k_0}{1+k_0 GB^{-1}s}, \quad k_0 = \frac{A_0}{1+A_0\beta}.
+\end{IEEEeqnarray}
+
+Da nova expressão de $V_3(s)$, que agora depende de $GB$, podem ser calculadas as sensibilidades de $Q_p$ e $f_p$ em relação a $GB$, cuja expressões são dadas por%
+%
+\begin{IEEEeqnarray}{rCl}
+S_{GB}^{f_p} &\approx& \frac{1}{2}k_0^2 \frac{w_p}{2\pi GB} \sqrt{\frac{R_1 C_1}{R_2 C_2}}, \\ \nonumber \\
+S_{GB}^{Q_p} &\approx& -S_{GB}^{f_p}.
+\end{IEEEeqnarray}
+
+Para o caso presente, como se verifica $\beta = 1$ e $A_0 >> 1$, tem-se $k_0 \approx 1$, pelo que se conclui
+\begin{IEEEeqnarray}{rCl}
+S_{GB}^{f_p}  &\approx& 0.04823 \\
+S_{GB}^{Q_p} &\approx& -0.04823
+\end{IEEEeqnarray}
+
+Os desvios relativos de $f_p$ e $Q_p$ devido ao facto de $GB$ pode ser aproximado por
+%
+\begin{IEEEeqnarray}{rCl}
+\left( \frac{\Delta f_p}{f_p}\right)_{GB \neq \infty} &\approx& - S_{GB}^{f_p} \approx -0.04823 \\ \nonumber \\
+\left( \frac{\Delta Q_p}{Q_p}\right)_{GB \neq \infty} &\approx& - S_{GB}^{Q_p} \approx 0.04823.
+\end{IEEEeqnarray}
+
+
+\subsubsection*{Alínea (c)}
+
+Assumindo um desvio de $GB$ de $55\%$ face ao valor nominal, os desvios relativos de  $f_p$ e $Q_p$ são
+\begin{IEEEeqnarray}{rCl}
+\left( \frac{\Delta f_p}{f_p}\right)_{GB \neq GBnom} &\approx& S_{GB}^{f_p} \frac{\Delta GB}{GB} \approx 0.02653 \\ \nonumber \\
+\left( \frac{\Delta Q_p}{Q_p}\right)_{GB \neq GBnom} &\approx& S_{GB}^{Q_p} \frac{\Delta GB}{GB} \approx -0.02653.
+\end{IEEEeqnarray}
+
+
+\subsubsection*{Alínea (d)}
+
+Tendo em conta os resultados calculados na alínea (a), Tab. \ref{tab:erros_pas}, que se baseiam nos desvios totais relativos aos componentes passivos, os desvios que  tendo em conta também o amplificador operacional são
+\begin{IEEEeqnarray}{rCl}
+\left( \frac{\Delta f_p}{f_p}\right)_{GB,R_{1,2},C_{1,2}} &\approx&
+	S_{GB}^{f_p} \frac{\Delta GB}{GB}
+	- S_{GB}^{f_p}
+	+  \left( \frac{\Delta f_p}{f_p}\right)_{R_{1,2},C_{1,2}}
+	\approx -0.1217 \ \ \ \ \ \\ \nonumber \\
+\left( \frac{\Delta Q_p}{Q_p}\right)_{GB,R_{1,2},C_{1,2}} &\approx&
+	S_{GB}^{Q_p} \frac{\Delta GB}{GB}
+	- S_{GB}^{Q_p}
+	+  \left( \frac{\Delta Q_p}{Q_p}\right)_{R_{1,2},C_{1,2}}
+	\approx 0.1217 \ \ \ \ \
+\end{IEEEeqnarray}
+
+
+\subsubsection*{Alínea (e)}
+
+O desvio relativo do ganho do filtro à frequência $f_p$ pode ser dado por
+\begin{IEEEeqnarray}{rCl}
+\frac{\Delta |T(jw_p)| }{|T(jw_p)| } &=& S_{Q_p}^{|T(jw_p)|}\frac{\Delta Q_p }{Q_p }
+\end{IEEEeqnarray}
+
+Ora, como $|T(jw_p)| = Q_p$, vem $S_{Q_p}^{|T(jw_p)|} = 1$, pelo que
+\begin{IEEEeqnarray}{rCl}
+\frac{\Delta |T(jw_p)| }{|T(jw_p)| } &=& \frac{\Delta Q_p }{Q_p }
+\end{IEEEeqnarray}
+
+Portanto, prevê-se que o valor do módulo à frequência $f_p$, $|T(jw_p)|_{desv}$, seja equacionado em,
+\begin{IEEEeqnarray}{rCl}
+|T(jw_p)|_{desv} &=&  |T(jw_p)|\left(1+\frac{\Delta Q_p }{Q_p}\right)
+\end{IEEEeqnarray}
+
+\noindent cujo desvio, em $dB$, é dado por
+\begin{IEEEeqnarray}{rCl}
+\left(\frac{|T(jw_p)|_{desv}}{|T(jw_p)|}\right)_{dB} = 20\cdot\log\left(1+\frac{\Delta Q_p }{Q_p}\right) \approx 0.9975 \ dB
+\end{IEEEeqnarray}
+

@@ -15,6 +15,4 @@ select doctor.name from doctor natural join study as s where s.description = 'X-
 AND (datediff(s.date, current_date) <= 7 OR datediff(s.date, current_date) >= -7) group by doctor.name
 having count(request_number) >= all (select count(request_number) from study group by doctor_id);
 
-/********************************** 
-Duvida -> O médico pode ser Technical e Clinical specialist ?
-*/
+

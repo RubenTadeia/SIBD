@@ -1,0 +1,194 @@
+% -*- root: main.tex -*-
+
+\section{Procedimento Experimental}
+
+De forma a evitar problemas de medição dos valores experimentais devido a erros provocados pela limitação do slew-rate do amplificador operacional, efectuou-se a análise da tensão máxima à saída permitida, em função da frequência do sinal. Tal análise foi feita utilizando MATLAB, para geração do gráfico, tendo sido o código colocado em anexo. O gráfico destes valores máximos está apresentado na figura \ref{fig:slew_rate}, tendo-se assumido um slew-rate de 0.5 V/$\mu$s, tal como indicado no valor típico do datasheet.
+
+\begin{figure}[!thpb]
+\centering
+\includegraphics[width=0.9\textwidth]{img/slew_rate.png}
+\caption{Tensão de máxima de saída em função da frequência do sinal devido a um slew-rate de 0.5 V/$\mu$s.}
+\label{fig:slew_rate}
+\end{figure}
+
+A partir do gráfico da tensão de saída máxima, optou-se por dimensionar as tensões de entrada nos vários procedimentos experimentais de forma a ter menos de 5 V à saída, o que garante que não se verifica as limitações do slew-rate a nenhuma independentemente da frequência.
+
+\subsection{Caracterização do Amplificador Operacional}
+
+\subsubsection*{Alínea (a)}
+
+O módulo utilizado tem número \quad\quad\quad.
+
+\subsubsection*{Alínea (b)}
+
+Com um sinal de entrada de amplitude 5 V e frequência 100 Hz, a reposta do amplificador operacional está representada em anexo, na página \quad\quad\quad.
+
+% Com um sinal de entrada de amplitude 5 V e frequência 100 Hz, a reposta do amplificador operacional está representada em anexo, na figura \ref{fig:buffer_resp}.
+
+% \begin{figure}[!thpb]
+% \centering
+% \includegraphics[width=0.5\textwidth]{img/plot.png}
+% \caption{Resposta do amplificador operacional a um sinal de amplitude 8 V e frequência 100 Hz na montagem de ganho unitário.}
+% \label{fig:buffer_resp}
+% \end{figure}
+
+A baixa frequência o ganho do amplificador operacional é elevado o suficiente para que se comporte como um amplificar ideal, pelo que, com o feedback unitário, o sinal de saída é igual ao de entrada.
+
+\subsubsection*{Alínea (c)}
+
+A resposta do amplificador operacional na montagem com ganho unitário e a funcionar com um ganho 3 dB abaixo do ganho DC está representada em anexo, na página \quad\quad\quad.
+
+% A resposta do amplificador operacional na montagem com ganho unitário e a funcionar com um ganho 3 dB abaixo do ganho DC está representada na figura \ref{fig:unit_corte}.
+
+% \begin{figure}[!thpb]
+% \centering
+% \includegraphics[width=0.5\textwidth]{img/plot.png}
+% \caption{Resposta do amplificador operacional a um sinal de amplitude 5 V e frequência \colorbox{red}{FREQ!!} na montagem de ganho unitário.}
+% \label{fig:unit_corte}
+% \end{figure}
+
+A muito baixa frequência, o ganho obtido foi de \quad\quad\quad. Assim, nesta situação o ganho alvo foi de \quad\quad\quad. Com uma amplitude de entrada de \quad\quad\quad e amplitude de saída de \quad\quad\quad, o ganho à frequência \quad\quad\quad é de \quad\quad\quad. Conclui-se que o produto GB é \quad\quad\quad.
+
+\subsection{Caracterização do Filtro}
+
+\subsubsection*{Alínea (b)}
+
+Os parâmetros $G_0$, $f_p$, $Q_p$ e $b$ calculados experimentalmente estão apresentados na Tabela \ref{tab:param_exp}, bem como as características do sinal de entrada, amplitude do sinal de saída e indicação da página em que o plot do representação dos sinais está anexada.
+
+\begin{table}[!ht]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+{Parâmetro} &{ Valor} & $V_i$ [mV] & $V_o$ [mV] & $f_{test}$ [Hz] & Pág. anexo \\
+\hline\hline
+$b$ & \quad\quad\quad\quad\quad\quad\quad & \quad\quad\quad\quad\quad\quad\quad &
+	\quad\quad\quad\quad\quad\quad\quad & \quad\quad\quad\quad\quad\quad\quad & \\
+\hline
+$f_p$ &&&&& \\
+\hline
+$Q_p$ &&&&& \\
+\hline
+$G_0$ &&&&& \\
+\hline
+\end{tabular}
+\caption{Valores numéricos experimentais dos parâmetros $G_0$, $f_p$, $Q_p$ e $b$.}
+\label{tab:param_exp}
+\end{table}
+
+\subsubsection*{Alínea (c)}
+
+De forma a fazer uma análise mais detalhada, efectuou-se a caracterização da resposta do filtro em quatro pontos por década, igualmente espaçados numa escala logarítmica, o que explica os valores de frequência usados. Os resultados obtidos estão apresentados na Tabela \ref{tab:freqs_medidas}.
+
+Os pontos obtidos foram marcados nos diagramas de Bode, na Figura \ref{fig:bode}. Adicionalmente, anexa-se na página \quad\quad\quad a resposta em frequência obtida através do analizador de espectros.
+
+\begin{table}[!ht]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+$f_{test}$ [Hz] & $V_i$ [mV] & $V_o$ [mV] & Ganho [dB] & Fase [º] \\
+\hline\hline
+100 & \quad\quad\quad\quad\quad\quad\quad & \quad\quad\quad\quad\quad\quad\quad
+	& \quad\quad\quad\quad\quad\quad\quad & \quad\quad\quad\quad\quad\quad\quad \\
+\hline
+178 &&&& \\
+\hline
+316 &&&& \\
+\hline
+562 &&&& \\
+\hline
+1000 &&&& \\
+\hline
+1780 &&&& \\
+\hline
+3160 &&&& \\
+\hline
+5620 &&&& \\
+\hline
+10000 &&&& \\
+\hline
+\end{tabular}
+\caption{Pontos experimentais medidos para caracterização da resposta em frequência do filtro.}
+\label{tab:freqs_medidas}
+\end{table}
+
+\subsubsection*{Alínea (d) - Comentários}
+
+\begin{table}[!hb]
+\begin{tabularx}{\textwidth}{X}
+\hline \\ \hline \\ \hline \\ \hline \\ \hline \\ \hline \\ \hline \\ \hline \\ \hline \\ \hline \\
+\hline \\ \hline \\ \hline \\ \hline \\ \hline \\ \hline \\ \hline \\ \hline \\ \hline \\ \hline \\ \hline \\ \hline \\
+\end{tabularx}
+\end{table}
+
+\subsection{Análise de Sensibilidades}
+
+\subsubsection*{Alínea (a)}
+
+Os valores calculados dos erros relativos de $f_p$ e $Q_p$, com a instrodução de desvios nos componentes passivos, estão apresentados na Tabela \ref{tab:param_exp_desvios_pass}.
+
+\begin{table}[!ht]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline
+{Parâmetro} &{ Valor} & Desvio esperado [\%] & Desvio medido [\%] \\
+\hline\hline
+$f_p$ & \quad\quad\quad\quad\quad\quad\quad & $-10$ & \quad\quad\quad\quad\quad\quad\quad  \\
+\hline
+$Q_p$ && $+10$ & \\
+\hline
+\end{tabular}
+\caption{Desvios relativos de $f_p$ e $Q_p$ medidos ao introduzir desvios nos componentes passivos.}
+\label{tab:param_exp_desvios_pass}
+\end{table}
+
+\subsubsection*{Alínea (b)}
+
+Os valores calculados dos erros relativos de $f_p$ e $Q_p$, com a instrodução de desvios no amplificador operacional, estão apresentados na Tabela \ref{tab:param_exp_desvios_act}.
+
+\begin{table}[!ht]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline
+{Parâmetro} &{ Valor} & Desvio esperado [\%] & Desvio medido [\%] \\
+\hline\hline
+$f_p$ & \quad\quad\quad\quad\quad\quad\quad & $-4.823$ & \quad\quad\quad\quad\quad\quad\quad  \\
+\hline
+$Q_p$ && $+4.823$ & \\
+\hline
+\end{tabular}
+\caption{Desvios relativos de $f_p$ e $Q_p$ medidos ao introduzir desvios no amplificador operacional.}
+\label{tab:param_exp_desvios_act}
+\end{table}
+
+\subsubsection*{Alínea (c)}
+
+Os valores calculados dos erros relativos de $f_p$ e $Q_p$, com a instrodução de desvios no amplificador operacional e nos componentes passivos, estão apresentados na Tabela \ref{tab:param_exp_desvios_all}.
+
+\begin{table}[!ht]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline
+{Parâmetro} &{ Valor} & Desvio esperado [\%] & Desvio medido [\%] \\
+\hline\hline
+$f_p$ & \quad\quad\quad\quad\quad\quad\quad & $-14.823$ & \quad\quad\quad\quad\quad\quad\quad  \\
+\hline
+$Q_p$ && $+14.823$ & \\
+\hline
+\end{tabular}
+\caption{Desvios relativos de $f_p$ e $Q_p$ medidos ao introduzir desvios no amplificador operacional e nos componentes passivos.}
+\label{tab:param_exp_desvios_all}
+\end{table}
+
+\subsubsection*{Alínea (d) - Comentários}
+
+\begin{table}[!hb]
+\begin{tabularx}{\textwidth}{X}
+\hline \\ \hline \\ \hline \\ \hline \\ \hline \\ \hline \\ \hline \\ \hline \\ \hline \\ \hline
+\end{tabularx}
+\end{table}
+
+\begin{table}[!htpb]
+\begin{tabularx}{\textwidth}{X}
+\hline \\ \hline \\ \hline \\ \hline \\ \hline \\ \hline \\ \hline \\ \hline \\ \hline \\ \hline
+\end{tabularx}
+\end{table}
