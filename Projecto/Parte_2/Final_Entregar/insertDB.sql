@@ -39,12 +39,12 @@ insert into doctor values (5, 'Fábio', 'Technical specialist');
 
 /* appointment */
 insert into appointment values (4, 1, '2016-11-01', 'Escritorio 4');
-insert into appointment values (5, 2,'2016-11-01', 'Foi numa tasca');
+insert into appointment values (5, 2, '2016-11-01', 'Foi numa tasca');
 insert into appointment values (5, 3, '2016-11-02',  'Nao me lembro, tive um acidente nesse dia');
 insert into appointment values (7, 3, '2016-11-02', 'Escritorio na Australia');
 insert into appointment values (6, 4, '2016-11-01',  'Escritorio de Las Vegas');
 insert into appointment values (2, 3, '2016-11-03',  'Polinesia Francesa');
-
+insert into appointment values (1, 4, '2016-11-04',  'Polinesia Francesa');
 
 /* request */
 insert into request values (1 , 4, 1, '2016-11-01');
@@ -53,6 +53,7 @@ insert into request values (3 , 6, 4, '2016-11-01');
 insert into request values (4 , 5, 3, '2016-11-02');
 insert into request values (5 , 7, 3, '2016-11-02');
 insert into request values (6 , 2, 3, '2016-11-03');
+insert into request values (7 , 1, 4, '2016-11-04');
 
 /* equipment */
 insert into equipment values ( 'Philips', '1118-1590-5341-6933-7029-3016' , 'Model 5');
@@ -65,12 +66,13 @@ insert into equipment values ( 'R2D2', 'Ahah-hehe-ihih-hoho-uhuh' , 'Space Unit'
 
 
 /* study */
-insert into study values ( 1, 'Electrocardiograma', '2016-11-02' , 2 , 'Philips', '1118-1590-5341-6933-7029-3016');
-insert into study values ( 2, 'X-ray', '2016-11-02' , 1, 'Philips', '8MEH-RVNUH-PDU6U-E3VSR-VBTV3-VEMBR-ACED');
-insert into study values ( 3, 'X-ray' , '2016-11-03', 3, 'Philips', 'AXBN-VB3R-79H5-5MHD');
-insert into study values ( 4, 'Electrocardiograma', '2016-11-03', 4 , 'Roger', 'YM38-Q84W-75CA-YYQD');
-insert into study values ( 5, 'X-ray' , '2016-11-03', 5 , 'Droid' , '2EC72-368A4-5E4E9-D54A1');
-insert into study values ( 6, 'X-ray' , '2016-11-04', 2, 'Philips', 'FR4S-8542-UYQW-USH9');
+insert into study values ( 1, 'Electrocardiograma', '2016-11-07' , 2 , 'Philips', '1118-1590-5341-6933-7029-3016');
+insert into study values ( 2, 'X-ray', '2016-11-07' , 1, 'Philips', '8MEH-RVNUH-PDU6U-E3VSR-VBTV3-VEMBR-ACED');
+insert into study values ( 3, 'X-ray' , '2016-11-08', 3, 'Philips', 'AXBN-VB3R-79H5-5MHD');
+insert into study values ( 4, 'Electrocardiograma', '2016-11-08', 4 , 'Roger', 'YM38-Q84W-75CA-YYQD');
+insert into study values ( 5, 'X-ray' , '2016-11-09', 5 , 'Droid' , '2EC72-368A4-5E4E9-D54A1');
+insert into study values ( 6, 'X-ray' , '2016-11-10', 2, 'Philips', 'FR4S-8542-UYQW-USH9');
+insert into study values ( 7, 'X-ray' , '2016-11-11', 3, 'Philips', 'FR4S-8542-UYQW-USH9');
 
 /* series */
 
@@ -79,7 +81,8 @@ insert into series values (2, 'Series B' , '/home/ruben/Modelli/' , 2 , 'X-ray')
 insert into series values (3, 'Series C' , '/home/ruben/Scaricati/' , 3 , 'X-ray');
 insert into series values (4, 'Series D' , '/home/ruben/Musica/' , 4 , 'Electrocardiograma');
 insert into series values (5, 'Series E' , '/home/ruben/Immagini/' , 5 , 'X-ray');
-insert into series values (6, 'Series F' , '/home/ruben/Scrivania/' , 3 , 'X-ray');
+insert into series values (6, 'Series F' , '/home/ruben/Scrivania/' , 6 , 'X-ray');
+insert into series values (7, 'Series G' , '/home/ruben/IST' , 7 , 'X-ray');
 
 
 /* element */
@@ -90,7 +93,7 @@ insert into element values (3, 3);
 insert into element values (4, 4);
 insert into element values (5, 5);
 insert into element values (6, 6);
-
+insert into element values (7, 7);
 
 /* region */
 
@@ -106,17 +109,17 @@ insert into region values (5, 5 , 0.425 ,0.425 , 0.495 , 0.495);
 
 /* Rebentar no primeiro trigger */
 
-insert into appointment values (7, 1, '2016-11-06',  'Explosion in trigger part 1');
-insert into request values (7 , 7, 1, '2016-11-06');
+insert into appointment values (8, 1, '2016-11-06',  'Explosion in trigger part 1');
+insert into request values (8 , 8, 1, '2016-11-06');
 
-insert into study values ( 7, 'X-ray' , '2016-11-06', 1 , 'R2D2' , 'Ahah-hehe-ihih-hoho-uhuh');
+insert into study values ( 8, 'X-ray' , '2016-11-06', 1 , 'R2D2' , 'Ahah-hehe-ihih-hoho-uhuh');
 /*Resposta : ERROR 1644 (45000): The same doctor cannot perform any study that he/she requested! */
 
 
 /* Rebentar no segundo trigger */
 
-insert into appointment values (7, 1, '2016-11-05',  'Explosion in trigger part 2');
-insert into request values (8 , 7, 1, '2016-11-05');
+insert into appointment values (8, 1, '2016-11-05',  'Explosion in trigger part 2');
+insert into request values (9 , 8, 1, '2016-11-05');
 
-insert into study values ( 8 , 'X-ray' , '2016-10-31', 2, 'R2D2', 'Ahah-hehe-ihih-hoho-uhuh');
+insert into study values ( 9 , 'X-ray' , '2016-10-31', 2, 'R2D2', 'Ahah-hehe-ihih-hoho-uhuh');
 /*Resposta : ERROR 1644 (45000): The date of a study must be posterior to the date of the appointment that requested the study! */
