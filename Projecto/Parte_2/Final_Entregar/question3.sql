@@ -1,5 +1,6 @@
 /* USE ist175682 
 USE ist179297 */
+
 USE ist175268;
 
 /* Pergunta 3
@@ -21,7 +22,7 @@ declare studyRN integer;
 declare requestRN integer;
 declare studyDI integer;
 declare requestDI integer;
-declare daysDifference integer;
+declare dateDifference integer;
 
 
 declare appointmentDT date;
@@ -39,20 +40,20 @@ SET studyDT = new.date;
 SET appointmentDT = (select distinct appointment.date from appointment, request , study where appointment.date = request.date 
 	AND request.request_number = studyRN);
 
-SET daysDifference = (select DATEDIFF(studyDT , appointmentDT));
+SET dateDifference = (select datediff(studyDT , appointmentDT));
 
 if ( studyDI = requestDI)
 then
-/* Versão 5.7 do SQL
+/* Na Versao 5.7 funcionaria assim, como no servidor do tecnico nao funciona, usamos a linha nao comentada
 signal sqlstate '45000' set message_text = 'The same doctor cannot perform any study that he/she requested!';*/
+call the_same_doctor_cannot_perform_any_study_he_or_she_requested();
 
-call The_same_doctor_cannot_perform_any_study_he_or_she_requested();
-elseif ( daysDifference <= 0 ) 
+elseif ( dateDifference <= 0 ) 
 then
-/* Versão 5.7 do SQL
+/* Na Versao 5.7 funcionaria assim, como no servidor do tecnico nao funciona, usamos a linha nao comentada
 signal sqlstate '45000' set message_text = 'The date of a study must be posterior to the date of the appointment that requested the study!';*/
+call study_date_isnt_posterior_to_date_of_the_appointment();
 
-call The_date_of_a_study_must_be_posterior_to_the_date_of_the_appointment_that_requeted_the_study();
 end if;
 end$$
 
