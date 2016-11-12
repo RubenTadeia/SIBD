@@ -1,0 +1,18 @@
+\select@language {portuguese}
+\contentsline {section}{\numberline {2}Experimental Results}{2}
+\contentsline {subsection}{\numberline {2.1}Rated values of the DC electric machine}{2}
+\contentsline {subsection}{\numberline {2.2}Rated values of the synchronous machine}{2}
+\contentsline {subsection}{\numberline {2.3}ALTERAR-EXPLICAR A MONTAGEM E AS ESCALAS E ASSIM}{2}
+\contentsline {subsection}{\numberline {2.4}No load losses}{2}
+\contentsline {subsection}{\numberline {2.5}Stationary characteristics - field current constant}{2}
+\contentsline {subsection}{\numberline {2.6}Stationary characteristics - changing the field current}{2}
+\contentsline {subsection}{\numberline {2.7}Effects of a variable mechanical load}{3}
+\contentsline {section}{\numberline {3}Questionnaire}{3}
+\contentsline {subsection}{\numberline {3.1}}{3}
+\contentsline {subsection}{\numberline {3.2}}{3}
+\contentsline {subsection}{\numberline {3.3}}{3}
+\contentsline {subsection}{\numberline {3.4}}{3}
+\contentsline {subsection}{\numberline {3.5}}{3}
+\contentsline {subsection}{\numberline {3.6}}{3}
+\contentsline {subsection}{\numberline {3.7}}{3}
+\contentsline {subsection}{\numberline {3.8}}{3}
