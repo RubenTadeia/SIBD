@@ -15,5 +15,5 @@ select name
 from doctor as d natural join study as s 
 where s.description = 'X-ray' AND s.manufacturer = 'Philips' AND (datediff(current_date, s.date) <= 7) 
 group by name 
-having count(request_number) >= all (select count(s.request_number) from study group by doctor_id);
+having count(request_number) >= all (select count(request_number) from study group by doctor_id);
 
