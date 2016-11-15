@@ -18,7 +18,7 @@ begin
 declare intersection varchar(5);
 
 /* inicialization of the variables for both points */
-declare x1_p1 numeric(4,3);
+declare x1_p1 decimal(4,3);
 declare x2_p1 decimal(4,3);
 declare y1_p1 decimal(4,3);
 declare y2_p1 decimal(4,3);
