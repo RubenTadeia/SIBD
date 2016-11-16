@@ -68,26 +68,29 @@ insert into equipment values ( 'R2D2', 'Ahah-hehe-ihih-hoho-uhuh' , 'Space Unit'
 /* study */
 insert into study values ( 1, 'Electrocardiograma', '2016-11-07' , 2 , 'Philips', '1118-1590-5341-6933-7029-3016');
 insert into study values ( 2, 'X-ray', '2016-11-07' , 1, 'Philips', '8MEH-RVNUH-PDU6U-E3VSR-VBTV3-VEMBR-ACED');
-insert into study values ( 3, 'X-ray' , '2016-11-08', 3, 'Philips', 'AXBN-VB3R-79H5-5MHD');
-insert into study values ( 4, 'Electrocardiograma', '2016-11-08', 4 , 'Roger', 'YM38-Q84W-75CA-YYQD');
+insert into study values ( 3, 'X-ray' , '2016-11-09', 3, 'Philips', 'AXBN-VB3R-79H5-5MHD');
+insert into study values ( 4, 'Electrocardiograma', '2016-11-09', 4 , 'Roger', 'YM38-Q84W-75CA-YYQD');
 insert into study values ( 5, 'X-ray' , '2016-11-09', 5 , 'Droid' , '2EC72-368A4-5E4E9-D54A1');
 insert into study values ( 6, 'X-ray' , '2016-11-10', 2, 'Philips', 'FR4S-8542-UYQW-USH9');
 insert into study values ( 7, 'X-ray' , '2016-11-11', 3, 'Philips', 'FR4S-8542-UYQW-USH9');
 
 /* series */
 
-insert into series values (1, 'Series A' , '/home/ruben/Documenti/' , 1 , 'Electrocardiograma');
-insert into series values (2, 'Series B' , '/home/ruben/Modelli/' , 2 , 'X-ray');
-insert into series values (3, 'Series C' , '/home/ruben/Scaricati/' , 3 , 'X-ray');
-insert into series values (4, 'Series D' , '/home/ruben/Musica/' , 4 , 'Electrocardiograma');
-insert into series values (5, 'Series E' , '/home/ruben/Immagini/' , 5 , 'X-ray');
-insert into series values (6, 'Series F' , '/home/ruben/Scrivania/' , 6 , 'X-ray');
+insert into series values (1, 'Series A' , '/home/ruben/Documents/' , 1 , 'Electrocardiograma');
+insert into series values (2, 'Series B' , '/home/ruben/Models/' , 2 , 'X-ray');
+insert into series values (3, 'Series C' , '/home/ruben/Downloads/' , 3 , 'X-ray');
+insert into series values (4, 'Series D' , '/home/ruben/Music/' , 4 , 'Electrocardiograma');
+insert into series values (5, 'Series E' , '/home/ruben/Pictures/' , 5 , 'X-ray');
+insert into series values (6, 'Series F' , '/home/ruben/Desktop/' , 6 , 'X-ray');
 insert into series values (7, 'Series G' , '/home/ruben/IST' , 7 , 'X-ray');
 
 
 /* element */
 
 insert into element values (1, 1);
+insert into element values (1, 2);
+insert into element values (1, 3);
+insert into element values (2, 1);
 insert into element values (2, 2);
 insert into element values (3, 3);
 insert into element values (4, 4);
@@ -98,11 +101,18 @@ insert into element values (7, 7);
 /* region */
 
 insert into region values (1, 1 , 0 , 0 , 0.2 , 0.2);
-insert into region values (2, 2 , 0.2 , 0.2 ,  0.4 , 0.4);
+insert into region values (2, 2 , 0.25 , 0.25 ,  0.4 , 0.4);
 insert into region values (3, 3 , 0.5, 0.5 , 0.9, 0.9);
 insert into region values (4, 4 , 0.4 , 0.4 , 0.5 , 0.5);
 insert into region values (5, 5 , 0.425 ,0.425 , 0.495 , 0.495);
 
+
+/* Teste da função*/
+
+insert into region values (1, 1 , 0.150 , 0.155 ,  0.160 , 0.165);
+insert into region values (1, 2 , 0.200 , 0.200 ,  0.249 , 0.249);
+insert into region values (1, 3 , 0.350 , 0.350 ,  0.399 , 0.399);
+insert into region values (2, 1 , 0.300 , 0.300 ,  0.500 , 0.500);
 
 /* Estes são as 2 queries que usei para testar o meu trigger :) */
 

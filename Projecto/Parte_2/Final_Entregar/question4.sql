@@ -17,52 +17,37 @@ returns varchar(5)
 begin
 declare intersection varchar(5);
 
-/* inicialization of the variables for both points */
-declare x1_p1 decimal(4,3);
-declare x2_p1 decimal(4,3);
-declare y1_p1 decimal(4,3);
-declare y2_p1 decimal(4,3);
-
-declare x1_p2 decimal(4,3);
-declare x2_p2 decimal(4,3);
-declare y1_p2 decimal(4,3);
-declare y2_p2 decimal(4,3);
-
-SET x1_p1 = (select x1 from region where series_id = series_id_A);
-SET x2_p1 = (select x2 from region where series_id = series_id_A);
-SET y1_p1 = (select y1 from region where series_id = series_id_A);
-SET y2_p1 = (select y2 from region where series_id = series_id_A);
-
-
+/* inicialization of the variable*/
 SET intersection = 'False';
 
-
-SET x1_p2 = (select x1 from region where series_id = series_id_B);
-SET x2_p2 = (select x2 from region where series_id = series_id_B);
-SET y1_p2 = (select y1 from region where series_id = series_id_B);
-SET y2_p2 = (select y2 from region where series_id = series_id_B);
-
-if ( ((x1_p1 >= LEAST(x1_p2, x2_p2) AND x1_p1 <= GREATEST(x1_p2, x2_p2))
+if
+(
+	select distinct true
+	from (select series_id, x1, y1, x2, y2 from region where series_id = series_id_A) as s1, 
+	(select series_id, x1, y1, x2, y2 from region where series_id = series_id_B) as s2
+	WHERE
+	( 
+		((s1.x1 >= LEAST(s2.x1, s2.x2) AND s1.x1 <= GREATEST(s2.x1, s2.x2))
+		OR
+		(s1.x2 >= LEAST(s2.x1, s2.x2) AND s1.x2 <= GREATEST(s2.x1, s2.x2)))
+		AND
+		((s1.y1 >= LEAST(s2.y1, s2.y2) AND s1.y1 <= GREATEST(s2.y1, s2.y2))
+		OR
+		(s1.y2 >= LEAST(s2.y1, s2.y2) AND s1.y2 <= GREATEST(s2.y1, s2.y2)))
 	OR
-	(x2_p1 >= LEAST(x1_p2, x2_p2) AND x2_p1 <= GREATEST(x1_p2, x2_p2)))
-	AND
-	((y1_p1 >= LEAST(y1_p2, y2_p2) AND y1_p1 <= GREATEST(y1_p2, y2_p2))
-	OR
-	(y2_p1 >= LEAST(y1_p2, y2_p2) AND y2_p1 <= GREATEST(y1_p2, y2_p2)))
+	( 
+		((s2.x1 >= LEAST(s1.x1, s1.x2) AND s2.x1 <= GREATEST(s1.x1, s1.x2))
+		OR
+		(s2.x2 >= LEAST(s1.x1, s1.x2) AND s2.x2 <= GREATEST(s1.x1, s1.x2)))
+		AND
+		((s2.y1 >= LEAST(s1.y1, s1.y2) AND s2.y1 <= GREATEST(s1.y1, s1.y2))
+		OR
+		(s2.y2 >= LEAST(s1.y1, s1.y2) AND s2.y2 <= GREATEST(s1.y1, s1.y2)))
+	)
+)
 )
 THEN SET intersection = 'True';
 
-
-/* Falta um caso em que o quadrado 2 esta dentro do quadrado 1*/
-elseif ( ((x1_p2 >= LEAST(x1_p1, x2_p1) AND x1_p2 <= GREATEST(x1_p1, x2_p1))
-	OR
-	(x2_p2 >= LEAST(x1_p1, x2_p1) AND x2_p2 <= GREATEST(x1_p1, x2_p1)))
-	AND
-	((y1_p2 >= LEAST(y1_p1, y2_p1) AND y1_p2 <= GREATEST(y1_p1, y2_p1))
-	OR
-	(y2_p2 >= LEAST(y1_p1, y2_p1) AND y2_p2 <= GREATEST(y1_p1, y2_p1)))
-)
-THEN SET intersection = 'True';
 end if;
 
 return intersection;

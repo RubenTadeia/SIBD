@@ -1,0 +1,10 @@
+mysql> insert into study values ( 8, 'X-ray' , '2016-11-06', 1 , 'R2D2' , 'Ahah-hehe-ihih-hoho-uhuh');
+
+ERROR 1305 (42000): PROCEDURE ist175268.the_same_doctor_cannot_perform_any_study_he_or_she_requested does not exist
+
+
+
+
+mysql> insert into study values ( 9 , 'X-ray' , '2016-10-31', 2, 'R2D2', 'Ahah-hehe-ihih-hoho-uhuh');
+
+ERROR 1305 (42000): PROCEDURE ist175268.study_date_isnt_posterior_to_date_of_the_appointment does not exist
