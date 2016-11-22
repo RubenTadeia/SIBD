@@ -3,9 +3,11 @@ USE ist179297*/
 
 USE ist175268;
 
+SET FOREIGN_KEY_CHECKS = 0; /* Disable foreign key checking.*/
 drop table if exists appointment;
 drop table if exists patient;
 drop table if exists doctor;
+SET FOREIGN_KEY_CHECKS = 1; /* Enable foreign key checking.*/
 
 create table IF NOT EXISTS patient(
 	patient_id  integer NOT NULL AUTO_INCREMENT,
