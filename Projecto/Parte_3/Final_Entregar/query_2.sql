@@ -19,7 +19,7 @@ Corrijam se estiver errado
 */
 SET @doctor_id = (select doctor_id from doctor where name = 'Raul');
 
-select @doctor_id;/* debug */
+/*select @doctor_id; *//* debug */
 
 
 /* 
@@ -28,7 +28,7 @@ select @doctor_id;/* debug */
 */
 SET @patient_id = (select patient_id from patient where name = 'Francesca');
 
-select @patient_id; /* debug */
+/*select @patient_id; *//* debug */
 
 
 /* 
@@ -37,7 +37,7 @@ select @patient_id; /* debug */
 
 SET @appdata = '2016-11-21';
 
-select @appdata; /* debug */
+/*select @appdata; */ /* debug */
 
 
 /* 
@@ -46,7 +46,7 @@ select @appdata; /* debug */
 
 SET @office = 'Escritório nas Bahamas';
 
-select @office; /* debug */
+/*select @office; *//* debug */
 
 
 /* 
@@ -56,23 +56,23 @@ select @office; /* debug */
 		- Delete (Desmarcar)
 */
 
-/* Inserir
+/* Inserir*/
 insert into appointment values (@patient_id, @doctor_id, @appdata, @office);
-*/
+
 
 SET @newdate = '2016-11-22';
 
-select @newdate; /* debug */
+/*select @newdate; *//* debug */
 
-/* Update*/
+/* Update 
 update appointment set date = @newdate where patient_id = @patient_id and doctor_id = @doctor_id and date = @appdata;
-
+*/
 
 /* Delete 
 delete from appointment where patient_id = @patient_id and date = @appdata and doctor_id = @doctor_id limit 1;
 */
 
-	select * from appointment;
+select * from appointment;
 
 	/* 
 		Problema que me parece que isto vá ter "assim à primeira vista" :

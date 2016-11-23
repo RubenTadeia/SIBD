@@ -21,6 +21,6 @@ Corrijam se estiver errado
 */
 SET @patient_name = 'John';
 
-select @patient_name; /* debug */
+/*select @patient_name; */ /* debug */
 
 select name, birthday, address from patient where name = @patient_name;

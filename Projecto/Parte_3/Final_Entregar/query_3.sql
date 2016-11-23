@@ -15,3 +15,87 @@ Corrijam se estiver errado
 */
 
 
+/* 
+	Criar variável em php  em vez de ter doctor_id
+	em vez de Raul ter o nome do médico com que se quer marcar um appointment;
+*/
+SET @doctor_id = (select doctor_id from doctor where name = 'Raul');
+
+/*select @doctor_id; *//* debug */
+
+
+/* 
+	Substituir Raul Solnado pela variável com o nome da pessoa, que entra como caixa de texto
+*/
+SET @patient_name = 'Raul Solnado';
+
+/*select @patient_name; *//* debug */
+
+
+/* 
+	Substituir John pela variável com o nome da pessoa, que entra como caixa de texto
+*/
+SET @birthday = '1994-07-14';
+
+/*select @birthday; *//* debug */
+
+/* 
+	Substituir John pela variável com o nome da pessoa, que entra como caixa de texto
+*/
+SET @address = 'Rua dos Jovens Artistas';
+
+/*select @address; *//* debug */
+
+
+/* 
+	A data é dada como input de uma combo box, em vez de ser hardcoded
+*/
+
+SET @appdata = '2016-11-21';
+
+/*select @appdata; *//* debug */
+
+
+/* 
+	O office é inserido por texto, através de uma caixa de texto e entra como variável
+*/
+
+SET @office = 'Escritório nas Bahamas';
+
+/*select @office; /* debug */
+
+
+/* 
+	Existem 3 opções:
+		- Inserir (Marcar)
+		- Update (Alterar a data)
+		- Delete (Desmarcar)
+*/
+
+/* Inserir
+insert into appointment values (@patient_id, @doctor_id, @appdata, @office);
+*/
+
+SET @newdate = '2016-11-22';
+
+/*select @newdate; */ /* debug */
+
+
+/*
+Transaction propriamente dita
+*/
+start transaction;
+
+insert into patient (name, birthday, address) values (@patient_name, @birthday, @address);
+
+/* 
+	Criar variável em php  em vez de ter patient_id
+	em vez de Francesca ter o nome do paciente com que se quer marcar um appointment;
+*/
+SET @patient_id = (select patient_id from patient where name = @patient_name);
+
+select @patient_id; /* debug */
+
+insert into appointment values (@patient_id, @doctor_id, @appdata, @office);
+
+commit;
