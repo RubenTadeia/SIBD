@@ -92,7 +92,7 @@ insert into patient (name, birthday, address) values (@patient_name, @birthday, 
 	Criar variável em php  em vez de ter patient_id
 	em vez de Francesca ter o nome do paciente com que se quer marcar um appointment;
 */
-SET @patient_id = (select patient_id from patient where name = @patient_name);
+SET @patient_id = (select patient_id from patient order by patient_id desc limit 1);
 
 select @patient_id; /* debug */
 
