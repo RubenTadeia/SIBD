@@ -76,7 +76,7 @@ SET @office = 'Escritório nas Bahamas';
 insert into appointment values (@patient_id, @doctor_id, @appdata, @office);
 */
 
-SET @newdate = '2016-11-22';
+SET @newdate = '2016-11-25';
 
 /*select @newdate; */ /* debug */
 
@@ -84,6 +84,9 @@ SET @newdate = '2016-11-22';
 /*
 Transaction propriamente dita
 */
+
+delimiter $$
+
 start transaction;
 
 insert into patient (name, birthday, address) values (@patient_name, @birthday, @address);
@@ -94,8 +97,17 @@ insert into patient (name, birthday, address) values (@patient_name, @birthday, 
 */
 SET @patient_id = (select patient_id from patient order by patient_id desc limit 1);
 
-select @patient_id; /* debug */
+/*select @patient_id; *//* debug */
 
-insert into appointment values (@patient_id, @doctor_id, @appdata, @office);
+/* esta query é só de SQLnão vai funcionar em php */ if (weekday(@newdate) >= 0 AND weekday(@newdate) <= 4)
+THEN insert into appointment values (@patient_id, @doctor_id, @appdata, @office);
 
-commit;
+else
+rollback;
+
+end if;
+
+commit;$$
+delimiter ;
+
+/* ESTE SCRIPT NÃO CORRE mas em PHP vai funcionar */
