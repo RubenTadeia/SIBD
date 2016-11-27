@@ -3,8 +3,8 @@
  
 <?php
 	$host = "db.tecnico.ulisboa.pt";
-	$user = "ist175682";
-	$pass = "fjlu8957";
+	$user = "ist179297";
+	$pass = "wnws3405";
 	$dsn = "mysql:host=$host;dbname=$user";
 	try
 	{
@@ -17,41 +17,50 @@
 		echo("</p>");
 		exit();
 	}
-
 	$patient_name = $_REQUEST['patient_name'];
-	$nome = "select name, birthday, address from patient where name = '$patient_name'";
+	$nome = "select name, birthday, address, patient_id from patient where name = '$patient_name'";
 	
-
 	$result = $connection->query($nome);
 	
-	$nrows = $result->rowCount();
+	$nrows = $result->rowCount();?>
 
+	<form action="appointment.php" method="post">
+
+	<?php
 	if($nrows>=1){
 		echo("<table border=\"1\">");
-		echo("<tr><td>name</td><td>birthday</td>
+		echo("<tr><td></td><td>Id</td><td>name</td><td>birthday</td>
 		<td>address</td></tr>");
 			foreach($result as $row)
 			{
 				echo("<tr><td>");
+				?><input type="radio" name="patient_id" value="<?php echo($row['patient_id']); ?>" checked><?php 
+				echo("</td><td>");
+				echo($row['patient_id']);
+				echo("</td><td>");
 				echo($row['name']);
 				echo("</td><td>");
 				echo($row['birthday']);
 				echo("</td><td>");
 				echo($row['address']);
-				echo("</td></tr>");
+				echo("</td></tr>");?> <br><?php
 			}
 		echo("</table>"); 
 		
-	?> <a href = "appointment.php" > Prosseguir </a>
+	?> <input type="submit" value="Agendar">
 	<?php
 	} else {
-		?> <a href = "ruben.php" > Novo Paciente </a>
+		?> <h3>Paciente nao consta na base de dados!<br>Pff registe o novo paciente.</h3>
 	<?php
 	}
+	?>
+	</form>
+	<form action="ruben.php" method="post">
+		<input type="submit" value="Novo Paciente">
+	</form>
+	<?php
 	
-
 	$connection = null;
-
 ?>
 
 </form>
