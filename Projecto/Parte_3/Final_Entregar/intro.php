@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
    <head>
-      <title>Projecto III - Grupo 15</title>
+      <title>Projecto Parte III - Grupo 15</title>
    </head>
    <body>
       <center>
@@ -11,7 +11,7 @@
          <br><br><br>
          <img src="images/start.gif" alt="Start" style="width:642px;height:395px;">
          <br><br><br>
-         <form action="whoIs.php" method="post">
+         <form action="begin.php" method="post">
             <p><input type="hidden" name="istid" value="<?=$_REQUEST['istid']?>"/></p>
             <p><input type="hidden" name="pass" value="<?=$_REQUEST['pass']?>"/></p>
             <p><input type="submit" value="Lets Start!"/></p>

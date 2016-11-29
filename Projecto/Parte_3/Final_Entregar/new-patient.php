@@ -6,8 +6,8 @@
 		<center>
 			<?php
 				$host = "db.tecnico.ulisboa.pt";
-				$user = "ist175268";
-				$pass = "ouup7210";
+				$user = $_REQUEST['istid'];
+				$pass = $_REQUEST['pass'];
 				$dsn = "mysql:host=$host;dbname=$user";
 				try
 				{
