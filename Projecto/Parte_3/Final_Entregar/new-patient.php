@@ -6,8 +6,8 @@
 		<center>
 			<?php
 				$host = "db.tecnico.ulisboa.pt";
-				$user = $_REQUEST['istid'];
-				$pass = $_REQUEST['pass'];
+				$user = "ist175268";
+				$pass = "ouup7210";
 				$dsn = "mysql:host=$host;dbname=$user";
 				try
 				{
@@ -63,7 +63,7 @@
 					?>
 			</form>
 			<form action="whoIs.php" method="post">
-				<input type="submit" value="Voltar Atr&aacute;s">
+				<input type="submit" value="Voltar Atr&agrave;s">
 			</form>
 			<?php
 				$connection = null;
