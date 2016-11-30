@@ -1,6 +1,6 @@
 <html>
 	<head>
-		<title>Do we know him already?</title>
+		<title>J&aacute; conhecemos este paciente?</title>
 	</head>
 	<body background="images/background3.jpeg">
 		<!-- Referências Bibliográficas: Link: https://images.duckduckgo.com/iu/?u=http%3A%2F%2Ffindwallpapershd.com%2Fwp-content%2Fuploads%2F2013%2F10%2F3D-medical-logo-hd-pictures.jpg&f=1-->
@@ -28,6 +28,8 @@
 				
 				$nrows = $result->rowCount();?>
 			<form action="appointment.php" method="post">
+				<p><input type="hidden" name="istid" value="<?=$_REQUEST['istid']?>"/></p>
+				<p><input type="hidden" name="pass" value="<?=$_REQUEST['pass']?>"/></p>
 				<?php
 					if($nrows>=1){
 						echo("<table border=\"1\" cellspacing=\"5\" bgcolor=\"#66CDAA\">\n");
@@ -49,18 +51,26 @@
 					?>
 				<br><br>
 				<input type="submit" value="Agendar">
-				<br><br>
-				<?php
-					} 
-					else 
-					{
-					?> 
-				<h3><br>Paciente n&atilde;o consta na Base de Dados!<br><br><br>Por favor registe este novo paciente!<br><br></h3>
-				<?php
-					}
-					?>
 			</form>
+			<br><br>
+			<?php
+				} 
+				else 
+				{
+					?> 
+			<h3><br>Paciente n&atilde;o consta na Base de Dados!<br><br><br>Por favor registe este novo paciente!<br></h3>
+			<form action="new_patient.php" method="post">
+				<p><input type="hidden" name="istid" value="<?=$_REQUEST['istid']?>"/></p>
+				<p><input type="hidden" name="pass" value="<?=$_REQUEST['pass']?>"/></p>
+				<input type="submit" value="Criar Novo Registo">
+			</form>
+			<?php
+				}
+				?>
+			<br>
 			<form action="begin.php" method="post">
+				<p><input type="hidden" name="istid" value="<?=$_REQUEST['istid']?>"/></p>
+				<p><input type="hidden" name="pass" value="<?=$_REQUEST['pass']?>"/></p>
 				<input type="submit" value="Voltar Atr&aacute;s">
 			</form>
 			<?php
