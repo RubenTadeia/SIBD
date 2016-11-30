@@ -2,65 +2,19 @@
   <head>
     <title>Adicionar Novo Paciente</title>
   </head>
-   <body>
-      <h3>Menu da Al&iacute;nea A</h3>
-      <fieldset>
-         <legend>Inserir Edif&iacute;cio</legend>
-         <form action="inserirEdificio.php" method="post">
+   	<body background="images/background4.jpeg">
+		<!-- Referências Bibliográficas: Link: https://images.duckduckgo.com/iu/?u=http%3A%2F%2Fbestwallpaperhd.com%2Fwp-content%2Fuploads%2F2015%2F03%2FMedical-Symbol.jpg&f=1-->
+      <h3><strong>Adicionar Novo Paciente</strong></h3>
+      <br><br>
+      <fieldset style="border: 2px solid rgb(10,10,255);">
+         <legend><strong>Por Favor Preencha os dados de Utilizador</strong></legend>
+         <form action="new_appointment.php" method="post">
             <p><input type="hidden" name="istid" value="<?=$_REQUEST['istid']?>"/></p>
             <p><input type="hidden" name="pass" value="<?=$_REQUEST['pass']?>"/></p>
-            <p>Morada Novo Edificio: <input type="text" name="morada"/></p>
-            <p><input type="submit" value="InserirEdificio"/></p>
-         </form>
-      </fieldset>
-      <fieldset>
-         <legend>Inserir Espaco</legend>
-         <form action="inserirEspaco.php" method="post">
-            <p><input type="hidden" name="istid" value="<?=$_REQUEST['istid']?>"/></p>
-            <p><input type="hidden" name="pass" value="<?=$_REQUEST['pass']?>"/></p>
-            <p>Morada Edif&iacute;cio que exista: <input type="text" name="morada"/></p>
-            <p>Novo c&oacute;digo: <input type="text" name="codigo"/></p>
-            <p><input type="submit" value="InserirEspaco"/></p>
-         </form>
-      </fieldset>
-      <fieldset>
-         <legend>Inserir Posto</legend>
-         <form action="inserirPosto.php" method="post">
-            <p><input type="hidden" name="istid" value="<?=$_REQUEST['istid']?>"/></p>
-            <p><input type="hidden" name="pass" value="<?=$_REQUEST['pass']?>"/></p>
-            <p>Morada Edif&iacute;cio que exista: <input type="text" name="morada"/></p>
-            <p>Novo C&oacute;digo: <input type="text" name="codigo"/></p>
-            <p>C&oacute;digo Espa&ccedil;o existente: <input type="text" name="codigo_espaco"/></p>
-            <p><input type="submit" value="InserirPosto"/></p>
-         </form>
-      </fieldset>
-      <fieldset>
-         <legend>Remover Edif&iacute;cio</legend>
-         <form action="removerEdificio.php" method="post">
-            <p><input type="hidden" name="istid" value="<?=$_REQUEST['istid']?>"/></p>
-            <p><input type="hidden" name="pass" value="<?=$_REQUEST['pass']?>"/></p>
-            <p>Morada do Edif&iacute;cio: <input type="text" name="morada"/></p>
-            <p><input type="submit" value="RemoverEdificio"/></p>
-         </form>
-      </fieldset>
-      <fieldset>
-         <legend>Remover Espa&ccedil;o</legend>
-         <form action="removerEspaco.php" method="post">
-            <p><input type="hidden" name="istid" value="<?=$_REQUEST['istid']?>"/></p>
-            <p><input type="hidden" name="pass" value="<?=$_REQUEST['pass']?>"/></p>
-            <p>Morada Edif&iacute;cio que exista: <input type="text" name="morada"/></p>
-            <p>C&oacute;digo do Espaco: <input type="text" name="codigo"/></p>
-            <p><input type="submit" value="RemoverEspaco"/></p>
-         </form>
-      </fieldset>
-      <fieldset>
-         <legend>Remover Posto</legend>
-         <form action="removerPosto.php" method="post">
-            <p><input type="hidden" name="istid" value="<?=$_REQUEST['istid']?>"/></p>
-            <p><input type="hidden" name="pass" value="<?=$_REQUEST['pass']?>"/></p>
-            <p>Morada Edif&iacute;cio que exista: <input type="text" name="morada"/></p>
-            <p>C&oacute;digo do Posto: <input type="text" name="codigo"/></p>
-            <p><input type="submit" value="RemoverPosto"/></p>
+            <p>Nome Do Paciente: <input type="text" name="pName" placeholder="Exemplo: Jo&atilde;o Miguel da Silva Cruz" size="60" /></p>
+            <p>Escolha a Data de Nascimento: <input type="date" name="pBirthday"/></p>
+            <p>Morada Do Paciente: <input type="text" name="pAddress" placeholder="Exemplo: Rua dos Actores Lote 27, 2&deg; Esquerdo" size="60" /></p>
+            <p><input type="submit" value="Completar Registo" style="font-weight:bold;"/></p>
          </form>
       </fieldset>
    </body>

@@ -12,7 +12,7 @@
          <form action="begin.php" method="post">
             <p><input type="hidden" name="istid" value="<?=$_REQUEST['istid']?>"/></p>
             <p><input type="hidden" name="pass" value="<?=$_REQUEST['pass']?>"/></p>
-            <p><input type="submit" value="Lets Start!"/></p>
+            <p><input type="submit" value="Lets Start!" style="font-weight:bold;"/></p>
          </form>
          <br>
          <p>Autores:</p>

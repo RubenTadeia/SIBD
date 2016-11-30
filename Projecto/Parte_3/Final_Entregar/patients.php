@@ -32,8 +32,8 @@
 				<p><input type="hidden" name="pass" value="<?=$_REQUEST['pass']?>"/></p>
 				<?php
 					if($nrows>=1){
-						echo("<table border=\"1\" cellspacing=\"5\" bgcolor=\"#66CDAA\">\n");
-						echo("<tr align=\"center\"><td>Escolher</td><td>Name</td><td>Birthday</td><td>Address</td></tr>");
+						echo("<table border=\"1\" cellspacing=\"5\" bgcolor=\"#00FFFF\">\n");
+						echo("<tr align=\"center\" bgcolor=\"#0000FF\"><td>Escolher</td><td>Name</td><td>Birthday</td><td>Address</td></tr>");
 							foreach($result as $row)
 							{
 								echo("<tr align=\"center\"><td>");
@@ -50,28 +50,27 @@
 					
 					?>
 				<br><br>
-				<input type="submit" value="Agendar">
+				<input type="submit" value="Agendar uma Consulta" style="font-weight:bold;">
+				<?php
+					} 
+					else 
+					{
+						?> 
+				<h3><br>Paciente n&atilde;o consta na Base de Dados!<br><br><br>Por favor registe este novo paciente!<br></h3>
+				<?php
+					}
+					?>
 			</form>
-			<br><br>
-			<?php
-				} 
-				else 
-				{
-					?> 
-			<h3><br>Paciente n&atilde;o consta na Base de Dados!<br><br><br>Por favor registe este novo paciente!<br></h3>
+			<br>
 			<form action="new_patient.php" method="post">
 				<p><input type="hidden" name="istid" value="<?=$_REQUEST['istid']?>"/></p>
 				<p><input type="hidden" name="pass" value="<?=$_REQUEST['pass']?>"/></p>
-				<input type="submit" value="Criar Novo Registo">
-			</form>
-			<?php
-				}
-				?>
-			<br>
+				<input type="submit" value="Criar Novo Registo" style="font-weight:bold;">
+				<br><br>
 			<form action="begin.php" method="post">
 				<p><input type="hidden" name="istid" value="<?=$_REQUEST['istid']?>"/></p>
 				<p><input type="hidden" name="pass" value="<?=$_REQUEST['pass']?>"/></p>
-				<input type="submit" value="Voltar Atr&aacute;s">
+				<input type="submit" value="Voltar Atr&aacute;s" style="font-weight:bold;">
 			</form>
 			<?php
 				$connection = null;
