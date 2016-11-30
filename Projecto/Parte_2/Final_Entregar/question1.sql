@@ -58,7 +58,7 @@ create table IF NOT EXISTS equipment(
 	manufacturer  varchar(50) NOT NULL,
     serial_number  varchar(50) NOT NULL,
    	model  varchar(50) NOT NULL,
-    primary key(manufacturer, serial_number, model)
+    primary key(manufacturer, serial_number)
     );
 
 
