@@ -24,8 +24,8 @@ insert into patient values (10, 'Carla Diferente',  '1993-05-12' ,'Italia');
 insert into patient values (11, 'Carla Rodrigues',  '2000-07-18' ,'Portugal');
 
 /* doctor */
-insert into doctor values (1, 'António', 'Clinical specialist');
-insert into doctor values (2,'Joana', 'Clinical specialist');
-insert into doctor values (3, 'Maria', 'Technical specialist');
-insert into doctor values (4, 'Raul', 'Technical specialist');
-insert into doctor values (5, 'Fábio', 'Technical specialist');
+insert into doctor values (1, 'António', 'Dermatologista');
+insert into doctor values (2,'Joana', 'Cardiologista');
+insert into doctor values (3, 'Maria', 'Alergia e Imunologia');
+insert into doctor values (4, 'Raul', 'Medicina interna');
+insert into doctor values (5, 'Fábio', 'Endoscopia');
