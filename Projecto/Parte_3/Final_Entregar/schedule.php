@@ -1,23 +1,45 @@
 <?php session_start(); ?>
 <html>
-   <body>
+   <head>
+      <title>A marcar</title>
+   </head>
+   <body background="images/leaf.jpeg">
+      <center>
       <?php
 			
 		$_SESSION['sch_date'] = $_REQUEST['schedule_date'];
          
          if ($_SESSION['sch_date'] <= date("Y-m-d")) {
-         	echo("<h3>The date you are trying to schedule is earlier than the current date!<br>Please insert a valid date!</h3>");
-         	?><button onclick="history.go(-1);">Back </button><?php
+         	?>
+         		<form action="begin.php" method="post">
+				<p><input type="hidden" name="istid" value="<?=$_REQUEST['istid']?>"/></p>
+				<p><input type="hidden" name="pass" value="<?=$_REQUEST['pass']?>"/></p>
+				<fieldset style="border: 2px solid rgb(50,255,20);">
+					<legend style="color:#FFFFFF"><strong>ERRO!</strong></legend>
+					<br>
+					<h3 style="color:#FFFFFF"><strong>A data que inseriste tem que ser posterior ao dia de hoje! </strong></h3>
+					<p><input type="submit" value="Regressar" style="font-weight:bold;"/></p>
+				</form>
+         	<?php
          }
          else if ( date(N,strtotime($_SESSION['sch_date'])) >= 6 ){
-         	echo("<h3>The services are closed on Weekends.<br>Please choose another date!</h3>");
-         	?><button onclick="history.go(-1);">Back </button><?php
+         	?>
+				<form action="begin.php" method="post">
+				<p><input type="hidden" name="istid" value="<?=$_REQUEST['istid']?>"/></p>
+				<p><input type="hidden" name="pass" value="<?=$_REQUEST['pass']?>"/></p>
+				<fieldset style="border: 2px solid rgb(50,255,20);">
+					<legend style="color:#FFFFFF"><strong>ERRO!</strong></legend>
+					<br>
+					<h3 style="color:#FFFFFF"><strong>Os servi&ccedil;os est&atilde;o encerrados ao fim de semana! </strong></h3>
+					<p><input type="submit" value="Regressar" style="font-weight:bold;"/></p>
+				</form>
+         	<?php
          }
          else {
          	
 			$host = "db.tecnico.ulisboa.pt";
-			$user = "ist179297";
-			$pass = "wnws3405";
+			$user = $_REQUEST['istid'];
+         	$pass = $_REQUEST['pass'];
 			$dsn = "mysql:host=$host;dbname=$user";
 			
 			try
@@ -45,7 +67,11 @@
 			$check_office = $connection->query($office_q);
 			$nrows = $check_office->rowCount();
 			
-			?><form action="final.php" method="post"><?php
+			?>
+			<fieldset style="border: 2px solid rgb(10,10,255);">
+            <legend style="color:#FFFFFF"><strong>A Marcar</strong></legend>
+			<form action="final.php" method="post">
+			<?php
 			
 			if($nrows >= 1){
 				foreach($check_office as $row){ $_SESSION['office']=$row['office'];}
@@ -65,7 +91,7 @@
 				
 				$office_result = array_diff($office_list,$check_aux);
 				
-				?><p>Escolha um gabinete:</p>
+				?><p><strong>Escolha um gabinete: </strong></p>
 				<select name="selected_office"><?php
 				
 				if (count($office_result) >0){
@@ -86,10 +112,14 @@
 				?>
 				</select><?php
 			}
-			?><p><input type="submit" value="Submit"/></p>
+			?>
+				<p><input type="hidden" name="istid" value="<?=$_REQUEST['istid']?>"/></p>
+         		<p><input type="hidden" name="pass" value="<?=$_REQUEST['pass']?>"/></p>
+         		<p><input type="submit" value="Submit"/></p>
 			</form><?php
          }
 		 $connection = null;
          ?>
+         </center>
    </body>
 </html>
