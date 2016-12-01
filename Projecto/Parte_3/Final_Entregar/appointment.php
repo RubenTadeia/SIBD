@@ -22,9 +22,8 @@
                echo("</p>");
                exit();
             }
-            
+
             $_SESSION['patient_id'] = $_REQUEST['patient_id'];
-            
             $doc_list = "select name from doctor";
             $search_doc = $connection->query($doc_list);
             ?>

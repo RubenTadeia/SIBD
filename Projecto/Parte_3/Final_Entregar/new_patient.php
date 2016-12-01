@@ -8,7 +8,7 @@
       <br><br>
       <fieldset style="border: 2px solid rgb(10,10,255);">
          <legend><strong>Por Favor Preencha os dados de Utilizador</strong></legend>
-         <form action="appointment.php" method="post">
+         <form action="new_appointment.php" method="post">
             <p><input type="hidden" name="istid" value="<?=$_REQUEST['istid']?>"/></p>
             <p><input type="hidden" name="pass" value="<?=$_REQUEST['pass']?>"/></p>
             <p>Nome Do Paciente: <input type="text" name="pName" placeholder="Exemplo: Jo&atilde;o Miguel da Silva Cruz" size="60" /></p>

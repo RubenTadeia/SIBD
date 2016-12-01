@@ -54,7 +54,6 @@
 				exit();
 			}
 			
-         	
          	$doc = $_REQUEST['doc_name'];
          	$get_doc_id = "select doctor_id from doctor where name = '$doc'";
 		

@@ -22,7 +22,7 @@
 					exit();
 				}
 				$patient_name = $_REQUEST['patient_name'];
-				$nome = "select name, birthday, address from patient having name like '$patient_name%'";
+				$nome = "select name, birthday, address, patient_id from patient having name like '$patient_name%'";
 				
 				$result = $connection->query($nome);
 				
@@ -67,6 +67,7 @@
 				<p><input type="hidden" name="pass" value="<?=$_REQUEST['pass']?>"/></p>
 				<input type="submit" value="Criar Novo Registo" style="font-weight:bold;">
 				<br><br>
+			</form>
 			<form action="begin.php" method="post">
 				<p><input type="hidden" name="istid" value="<?=$_REQUEST['istid']?>"/></p>
 				<p><input type="hidden" name="pass" value="<?=$_REQUEST['pass']?>"/></p>
@@ -75,7 +76,6 @@
 			<?php
 				$connection = null;
 				?>
-			</form>
 		</center>
 	</body>
 </html>
