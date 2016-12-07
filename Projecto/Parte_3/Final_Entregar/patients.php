@@ -22,7 +22,7 @@
 					exit();
 				}
 				$patient_name = $_REQUEST['patient_name'];
-				$nome = "select name, birthday, address, patient_id from patient having name like '$patient_name%'";
+				$nome = "select name, birthday, address, patient_id from patient having name like '%$patient_name%'";
 				
 				$result = $connection->query($nome);
 				
