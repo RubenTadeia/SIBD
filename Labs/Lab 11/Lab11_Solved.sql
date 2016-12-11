@@ -2029,7 +2029,7 @@ Note: After the GROUP BY include WITH ROLLUP to aggregate the overall results.
 
 %%% Resposta
 
-
+select week_day_name, avg(reading) from date_dimension NATURAL JOIN meter_readings GROUP BY week_day_name WITH ROLLUP;
 
 ###################################################################################
 
@@ -2045,7 +2045,7 @@ Note: After the GROUP BY include WITH ROLLUP to aggregate the overall results.
 
 %%% Resposta
 
-
+select week_number, avg(reading) from meter_readings NATURAL JOIN date_dimension where week_number> 49 GROUP BY week_number WITH ROLLUP;
 
 ###################################################################################
 
@@ -2060,7 +2060,10 @@ Note: After the GROUP BY include WITH ROLLUP to aggregate the overall results.
 
 %%% Resposta
 
-
+select building_name, week_number, avg(reading) from meter_readings
+NATURAL JOIN building_dimension
+NATURAL JOIN date_dimension where week_number> 49
+GROUP BY building_name, week_number WITH ROLLUP;
 
 ###################################################################################
 
@@ -2075,7 +2078,10 @@ at the top.
 
 %%% Resposta
 
-
+select building_name, avg(reading) from meter_readings
+NATURAL JOIN building_dimension
+NATURAL JOIN date_dimension
+GROUP BY building_name ORDER BY avg(reading) desc;
 
 ###################################################################################
 
@@ -2086,12 +2092,24 @@ at the top.
 
 19. Write a query to determine the average consumption by building name and by day
 period (in the time dimension). The results should be sorted by building name in
-alphabetical order and by average consumption in decreasing order. Is it true that all
+alphabetical order and by average consumption in decreasing order.
+
+%%% Resposta
+
+select building_name, day_period, avg(reading) from meter_readings
+NATURAL JOIN building_dimension
+NATURAL JOIN date_dimension
+NATURAL JOIN time_dimension
+GROUP BY building_name, day_period ORDER BY building_name, avg(reading) desc;
+
+%%% Pergunta
+
+19. Is it true that all
 buildings have the highest consumption in the afternoon?
 
 %%% Resposta
 
-
+It is true!
 
 ###################################################################################
 
@@ -2106,7 +2124,11 @@ This is a drill-down into a more fine-grained level of detail.
 
 %%% Resposta
 
-
+select building_name, day_period, hour_of_day ,avg(reading) from meter_readings
+NATURAL JOIN building_dimension
+NATURAL JOIN date_dimension
+NATURAL JOIN time_dimension
+GROUP BY building_name, day_period, hour_of_day ORDER BY building_name, avg(reading) desc;
 
 ###################################################################################
 
@@ -2121,6 +2143,10 @@ Hint: the results have been generated at different levels of detail.
 
 %%% Resposta
 
-
+É verdade que o edificío C agora tem maior consumo de manhã do que à tarde. No entanto,
+na alínea 20 estamos a fazer um drill-down que não fizemos na alínea 19.
+Ou seja, na alínea 19, vamos apenas ao detalhe de "em que altura do dia temos a maior média de consumo"
+e todos os edifício revelam maior indice de consumo à tarde. No entanto, quando entramos no detalhe das horas (drill-down)
+percebemos que às "11 horas da manhã" o edifício C atinge o máximo de consumo do dia.
 
 ###################################################################################
